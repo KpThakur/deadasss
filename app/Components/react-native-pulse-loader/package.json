@@ -1,0 +1,60 @@
+{
+  "_args": [
+    [
+      "react-native-pulse-loader@1.0.3",
+      "/home/administator/Documents/DEADASSS"
+    ]
+  ],
+  "_from": "react-native-pulse-loader@1.0.3",
+  "_id": "react-native-pulse-loader@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-rbpszeD2IGhpd5/oztomDIL/Ty+OXXNnNQc5n6eqW2VrUJSHaHozG3lC8X+QxxoOdCntZh73Z9X92fIguorPPw==",
+  "_location": "/react-native-pulse-loader",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "react-native-pulse-loader@1.0.3",
+    "name": "react-native-pulse-loader",
+    "escapedName": "react-native-pulse-loader",
+    "rawSpec": "1.0.3",
+    "saveSpec": null,
+    "fetchSpec": "1.0.3"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-pulse-loader/-/react-native-pulse-loader-1.0.3.tgz",
+  "_spec": "1.0.3",
+  "_where": "/home/administator/Documents/DEADASSS",
+  "author": {
+    "name": "Yousef Kamawall"
+  },
+  "bugs": {
+    "url": "https://github.com/mastermoo/react-native-pulse-loader/issues"
+  },
+  "description": "tinder-like loader for your react native app",
+  "homepage": "https://github.com/mastermoo/react-native-pulse-loader#readme",
+  "keywords": [
+    "react-native",
+    "tinder",
+    "loader",
+    "pulse-loader",
+    "location-loader"
+  ],
+  "license": "MIT",
+  "main": "PulseLoader.js",
+  "name": "react-native-pulse-loader",
+  "peerDependencies": {
+    "react-native": "^0.27",
+    "prop-types": "15.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mastermoo/react-native-pulse-loader.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.3"
+}
