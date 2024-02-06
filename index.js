@@ -2,7 +2,7 @@
 import { AppRegistry,DeviceEventEmitter } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage';
-import IncomingCall from 'react-native-incoming-call';
+// import IncomingCall from 'react-native-incoming-call';
 import TrackPlayer from 'react-native-track-player';
 import * as RootNavigation from "./RootNavigation";
 import App from './App';
