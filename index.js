@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import TrackPlayer from 'react-native-track-player';
 import * as RootNavigation from "./RootNavigation";
 import App from './App';
-
+import 'react-native-gesture-handler';
 import { name as appName } from './app.json';
 
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
