@@ -15,7 +15,7 @@ const VideoCallStart = (props) => {
 
                 <Text style={styles.LetChllngeTxt}>Video Call</Text>
                 <Text style={styles.LetChllngeTxt}>Will Start in :</Text>
-                {props.Seconds < props.CallStartTime ?
+                {/* {props.Seconds < props.CallStartTime ?
                     <CountDown
                         // until={60 * 10 + 30}
                         until={60 * props.counter}
@@ -28,7 +28,7 @@ const VideoCallStart = (props) => {
                     />
                     :
                     null
-                }
+                } */}
                 {/* <Text style={{ fontSize: 60, fontFamily: FONT_FAMILY_REGULAR, color: RED_COLOUR_CODE }}>{props.seconds < -1 ? '0' : props.counter} MIN</Text> */}
             </View>
         </View>

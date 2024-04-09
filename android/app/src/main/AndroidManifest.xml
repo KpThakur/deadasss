@@ -32,7 +32,7 @@
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>                         
             </intent-filter>
 
-            <intent-filter android:autoVerify="true">
+            <!-- <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -45,14 +45,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="deadasss" />
-            </intent-filter>
+            </intent-filter> -->
 
         </activity>
 
         
         <activity
             android:name="com.stripe.android.payments.StripeBrowserLauncherActivity"
-            android:exported="true" />
+            android:exported="false" />
 
     </application>
 

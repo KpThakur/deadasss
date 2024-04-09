@@ -52,7 +52,7 @@ const ActiveChallengeList = (props) => {
                             <Text numberOfLines={1} style={[styles.MainChllngeTxt, { width: '40%' }]}>{props.challengeList.challenge_title}</Text>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={[styles.MainChllngeTxt]}>Time Left :</Text>
-                                <CountDown
+                                {/* <CountDown
                                     // until={60 * 10 + 30}
                                     until={60 * props.ConfirmTime}
                                     size={15}
@@ -61,7 +61,7 @@ const ActiveChallengeList = (props) => {
                                     digitTxtStyle={{ color: '#000' }}
                                     timeToShow={['M', 'S']}
                                     timeLabels={{ m: 'MM', s: 'SS' }}
-                                />
+                                /> */}
                             </View>
                             {/* <Text style={[styles.MainChllngeTxt]}>Time Left : {props.ConfirmTime} min</Text> */}
                             {/* <Text style={[styles.MainChllngeTxt]}>Time Left : {props.confirm} min</Text> */}
