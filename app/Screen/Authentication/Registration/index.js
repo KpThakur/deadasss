@@ -94,6 +94,10 @@ const RegistrationView = () => {
             AnimatedAlert.showAlert()
             setAlertMessage('Please enter confirm password');
             return false;
+        } if (parameters.ConfirmPassword !== parameters.Password) {
+            AnimatedAlert.showAlert()
+            setAlertMessage("Confirm password and password doesn't match ")
+            return false;
         }
         //  if (parameters.CountryCode == '') {
         //     AnimatedAlert.showAlert()

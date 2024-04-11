@@ -21,7 +21,7 @@ const CreateChallenge = (props) => {
                     </TouchableOpacity>
 
                 </View>
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
                     <View style={{ justifyContent: 'center', marginTop: 20 }}>
                         <View style={{ justifyContent: 'center', alignItems: "center" }}>
                             <TextInput

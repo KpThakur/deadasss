@@ -123,7 +123,7 @@ const RegistrationScreen = (props) => {
     >
       <View style={styles.body}>
         <StatusBar backgroundColor={REGISTRATION_BACKGROUND_COLOUR} />
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View
             style={{ paddingTop: 30, paddingBottom: 30, alignItems: "center" }}
           >
@@ -335,12 +335,22 @@ const RegistrationScreen = (props) => {
             buttonLabelStyle={{ color: WHITE_COLOR_CODE }}
             onPress={() => onPressRegister()}
           />
-          <TouchableOpacity onPress={() => props.onPressLoginHere()}>
+          {/* <TouchableOpacity onPress={() => props.onPressLoginHere()}>
             <Text style={styles.AlredyAccntTxt}>
               Already have an account?
               <Text style={{ color: RED_COLOUR_CODE }}> Login Here.</Text>
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+
+          <View style={styles.alrdyAccView}>
+          <Text style={styles.AlredyAccntTxt}>
+              Already have an account?
+            </Text>
+            <TouchableOpacity onPress={() => props.onPressLoginHere()}>
+            <Text style={[styles.AlredyAccntTxt, {color: RED_COLOUR_CODE}]}> Login Here.</Text>
+            </TouchableOpacity>
+          </View>
+          
         </ScrollView>
 
         <Modal
