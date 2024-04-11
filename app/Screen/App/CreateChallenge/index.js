@@ -23,17 +23,12 @@ const CreateChallengeView = () => {
     setSelectNUmber(status);
   }
 
-  console.log('find title:-', ChallengeTitle);
+ // console.log('find title:-', priceCovert);
 
   function validationFrom() {
     if (ChallengeTitle === '') {
       AnimatedAlert.showAlert();
       setAlertMessage('Please enter challenge title');
-      return false;
-    }
-    if (selectNumber === '') {
-      AnimatedAlert.showAlert();
-      setAlertMessage('Please select any one number');
       return false;
     }
     if (priceCovert === '') {

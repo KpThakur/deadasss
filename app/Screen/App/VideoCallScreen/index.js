@@ -253,7 +253,7 @@ export default class JoinChannelAudio extends Component<{}, State, any> {
           <Image source={require('../../../Assets/deadasss.png')} resizeMode='contain' style={{ width: 120, height: 80 }} />
         </View>
         <View style={{ position: 'absolute', top: 100, width: '95%', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-          {/* {ImageShow &&
+          {ImageShow &&
             <CountDown
               until={ImageShow ? this.state.remaningTime : 60 * 10 + 30}
               // until={counter}
@@ -264,7 +264,7 @@ export default class JoinChannelAudio extends Component<{}, State, any> {
               timeToShow={['M', 'S']}
               timeLabels={{ m: 'MM', s: 'SS' }}
             />
-          } */}
+          }
         </View>
         <View style={{ position: 'absolute', bottom: 50, width: '100%', marginRight: 15 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>

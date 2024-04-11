@@ -89,7 +89,7 @@ const PayNowScreenView = ({ route }) => {
                         }
                         console.log('params: ', params);
                         const { data } = await apiCall('POST', ENDPOINTS.PAYMENT_FOR_CHALLENGE, params);
-                        console.log('data: ', data);
+                        console.log('responce data >>>.: ', data.data);
                         if (data.status === 200) {
                             setIsLoading(false)
                             navigation.navigate("VideoCallStart", { data: data.data })

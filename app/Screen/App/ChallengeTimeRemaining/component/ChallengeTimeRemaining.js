@@ -23,7 +23,7 @@ const ChallengeTimeRemaining = (props) => {
                     <View style={{ flex: 3.5, justifyContent: 'center', }}>
                         {/* <Text style={styles.MinutesView}>{props.counter < 0 ? 0 : props.counter} min</Text> */}
                         <View style={{ marginBottom: 18 }}>
-                            {/* <CountDown
+                            <CountDown
                                 // until={60 * 10 + 30}
                                 until={60 * props.counter}
                                 size={20}
@@ -33,7 +33,7 @@ const ChallengeTimeRemaining = (props) => {
                                 timeToShow={['M', 'S']}
                                 timeLabels={{ m: 'MM', s: 'SS' }}
                                 timeLabelStyle={{ fontSize: 15 }}
-                            /> */}
+                            />
                             <View style={styles.ShareCancelView}>
                                 <TouchableOpacity onPress={() => props.onPressShare()}>
                                     <Text style={styles.ShareCancelTxt}>Share</Text>

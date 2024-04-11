@@ -54,7 +54,7 @@ const PayNowScreen = (props) => {
                             <Text style={styles.PayTitle}>Time Remained :</Text>
                             {/* <Text style={styles.TimingText}>{props.counter}</Text> */}
                             {/* <Text style={styles.TimingText}>{props.data.remainningTime}</Text> */}
-                            {/* <CountDown
+                            <CountDown
                                 // until={60 * 10 + 30}
                                 until={60 * props.counter}
                                 size={18}
@@ -63,7 +63,7 @@ const PayNowScreen = (props) => {
                                 digitTxtStyle={{ color: REGISTRATION_BACKGROUND_COLOUR }}
                                 timeToShow={['M', 'S']}
                                 timeLabels={{ m: 'MM', s: 'SS' }}
-                            /> */}
+                            />
                             <Text style={styles.TimingPriceTxt}>NOW :<Text style={{ color: WHITE_COLOR_CODE }}> ${props.data.challenge_amount}</Text></Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>

@@ -41,7 +41,7 @@ const RatingScreen = (props) => {
             <View style={styles.body}>
                 <StatusBar backgroundColor={CHANGE_PASSWORD_COLOUR_CODE} />
 
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
                     <View style={{ flex: 5.5, paddingTop: Platform.OS === 'ios' ? 25 : 15 }}>
                         <View style={{ flexDirection: 'row', paddingTop: 2, paddingBottom: 30, alignItems: 'center', justifyContent: 'space-between' }}>
                             <View />

@@ -38,7 +38,7 @@ const TermAndCondition = (props) => {
                         </TouchableOpacity>
                     </View>
                     {/* <Image style={{ height: 130, width: '80%' }} source={require('../../../../Assets/deadasss.png')} /> */}
-                    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <Image source={require('../../../../Assets/deadasss.png')} />
                         <View style={{ paddingTop: 35, padding: 10 }}>
                             <Text style={styles.AboutUsTitle}>
