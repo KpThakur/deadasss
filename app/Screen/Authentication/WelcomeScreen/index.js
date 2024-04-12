@@ -17,6 +17,7 @@ const WelcomeView = () => {
         const fcmToken = await messaging().getToken();
         if (fcmToken) {
             await AsyncStorage.setItem("fcmToken", fcmToken)
+            console.log("find fcm token>>>", fcmToken)
         } else {
             console.log("Failed", "No token received");
         }
