@@ -17,6 +17,7 @@ import RtcEngine, {
   ChannelProfile,
   ClientRole,
   RtcEngineConfig,
+  RtcEngineContext,
   RtcLocalView,
   RtcRemoteView,
 } from 'react-native-agora';
@@ -25,16 +26,16 @@ import { apiCall } from '../../../Utils/httpClient';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
 import AsyncStorage from '@react-native-community/async-storage';
 
-interface State {
-  channelId: string;
-  isJoined: boolean;
-  remoteUid: number[];
-  switchCamera: boolean;
-  switchRender: boolean;
-}
+// interface State {
+//   channelId: string;
+//   isJoined: boolean;
+//   remoteUid: number[];
+//   switchCamera: boolean;
+//   switchRender: boolean;
+// }
 
-export default class JoinChannelAudio extends Component<{}, State, any> {
-  _engine: RtcEngine | undefined;
+export default class JoinChannelAudio extends Component{
+  // _engine: RtcEngine | undefined;
 
   constructor(props) {
     super(props);
@@ -175,8 +176,8 @@ export default class JoinChannelAudio extends Component<{}, State, any> {
   }
 
   _initEngine = async () => {
-    this._engine = await RtcEngine.createWithConfig(
-      new RtcEngineConfig('42bf93c76a794689a7fd31953c3f07f8')
+    this._engine = await RtcEngine.createWithContext(
+      new RtcEngineContext('c810068159a94b1c9e8f66547db275e3')
     );
     this._addListeners();
 
