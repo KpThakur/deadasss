@@ -34,9 +34,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 //   switchRender: boolean;
 // }
 
-export default class JoinChannelAudio extends Component {
-  // <{}, State, any>
-  // _engine: RtcEngine | undefined;
+export default class JoinChannelAudio extends Component<{}, State, any> {
+  _engine: RtcEngine | undefined;
 
   constructor(props) {
     super(props);
@@ -214,12 +213,8 @@ export default class JoinChannelAudio extends Component {
   };
 
   _initEngine = async () => {
-    this._engine = await RtcEngine.createWithContext(
-      //   new RtcEngineConfig('42bf93c76a794689a7fd31953c3f07f8')
-      // );
-      // new RtcEngineConfig('c810068159a94b1c9e8f66547db275e3')
-      // );
-      new RtcEngineContext('c810068159a94b1c9e8f66547db275e3'),
+    this._engine = await RtcEngine.createWithConfig(
+      new RtcEngineConfig('42bf93c76a794689a7fd31953c3f07f8')
     );
     this._addListeners();
 
