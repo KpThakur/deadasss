@@ -1,4 +1,4 @@
-import { PermissionsAndroid } from 'react-native';
+import {PermissionsAndroid} from 'react-native';
 
 /**
  * @name requestCameraAndAudioPermission
@@ -18,7 +18,7 @@ export default async function requestCameraAndAudioPermission() {
     ) {
       console.log('You can use the cameras & mic');
     } else {
-      'Permission denied');
+      console.log('Permission denied');
     }
   } catch (err) {
     console.warn(err);
