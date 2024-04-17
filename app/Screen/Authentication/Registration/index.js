@@ -64,17 +64,18 @@ const RegistrationView = () => {
         });
     };
     function validationFrom(parameters) {
-        if (parameters.FirstName == '') {
+        if (parameters.FirstName === '') {
             AnimatedAlert.showAlert()
             setAlertMessage('Please enter your first name');
             return false;
-        } if (parameters.LastName == '') {
+        } if (parameters.LastName === '') {
             AnimatedAlert.showAlert()
             setAlertMessage('Please enter your last name');
             return false;
         }
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (parameters.Email == "") {
+        let reg = /^\s*\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+\s*$/;
+        // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (parameters.Email === "" || parameters.Email.trim() === '') {
             AnimatedAlert.showAlert()
             setAlertMessage('Please enter your email address');
             return false;
@@ -82,7 +83,7 @@ const RegistrationView = () => {
             AnimatedAlert.showAlert()
             setAlertMessage("please enter correct email address");
             return false;
-        } if (parameters.Password == '') {
+        } if (parameters.Password === '') {
             AnimatedAlert.showAlert()
             setAlertMessage('Please enter your password');
             return false;
@@ -90,7 +91,7 @@ const RegistrationView = () => {
             AnimatedAlert.showAlert()
             setAlertMessage("password should be min 6 characters");
             return false;
-        } if (parameters.ConfirmPassword == '') {
+        } if (parameters.ConfirmPassword === '') {
             AnimatedAlert.showAlert()
             setAlertMessage('Please enter confirm password');
             return false;

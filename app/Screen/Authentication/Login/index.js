@@ -57,6 +57,7 @@ const Login = () => {
                     "device_token": deviceToken
                 }
                 const { data } = await apiCall('POST', ENDPOINTS.USER_SIGN_IN, params);
+                console.log("find fcm token in params", params)
                 console.log('data: ', data);
                 if (data.status === 200) {
                     if (data.data.status === 1) {

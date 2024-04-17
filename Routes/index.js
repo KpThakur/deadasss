@@ -260,15 +260,15 @@ function Route(props) {
 
     const stripeKeyDynamic = async () => {
         try {
-            await AsyncStorage.setItem('agoraId','7878b551491f49aeb284895aedb843d9');
-            stripe.setOptions({
-                publishableKey: 'pk_test_jJq1wfZCXc2StuOxN1lDqV19',
-                // androidPayMode: 'test', // Android only
-            });
+            // await AsyncStorage.setItem('agoraId','7878b551491f49aeb284895aedb843d9');
+            // stripe.setOptions({
+            //     publishableKey: 'pk_test_jJq1wfZCXc2StuOxN1lDqV19',
+            //     // androidPayMode: 'test', // Android only
+            // });
 
 
             const { data } = await apiCall('POST', ENDPOINTS.GET_STRIPE_KEY,);
-            console.log("find stripeKeyDynamic >>>>>>>>>>>>", data);
+            console.log("find stripeKeyDynamic >>>>>>>>>>>>", data.data);
             console.log("🚀  file: index.js  line 258  stripeKeyDynamic  data", data)
             if (data.status === 200) {
                 await AsyncStorage.setItem('agoraId',data.data.agora_app_certificate);

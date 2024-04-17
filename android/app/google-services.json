@@ -1,52 +1,26 @@
 {
   "project_info": {
-    "project_number": "534658843372",
-    "project_id": "deadasss-74601",
-    "storage_bucket": "deadasss-74601.appspot.com"
+    "project_number": "1015088419632",
+    "project_id": "deadasss-599fd",
+    "storage_bucket": "deadasss-599fd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:534658843372:android:c7a8e72e4fa71433eb1bc9",
+        "mobilesdk_app_id": "1:1015088419632:android:375a129f1c668f917daef5",
         "android_client_info": {
           "package_name": "com.deadasss"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "534658843372-4dhejsgmpcubaq3gd63hb6t4gkgu5a70.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.deadasss",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "534658843372-h289d6odtfj0oqmvb2idi1ufk0nu7qjp.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.deadasss",
-            "certificate_hash": "0e7c02f22c28a644c063f4a4a5f50b778e5597ba"
-          }
-        },
-        {
-          "client_id": "534658843372-macehn3u6fafe5bhvdnot3kij5q2am3j.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAn7Eb-YtC0gHeCbBnleorTUeDt3UqEF6s"
+          "current_key": "AIzaSyC_yezvqkrypqr7pvKgG8PgkIhN9y64VjU"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "534658843372-macehn3u6fafe5bhvdnot3kij5q2am3j.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -21,6 +21,10 @@ const PayNowScreenView = ({ route }) => {
     const [DataChallenege, setDataChallenege] = useState(data);
     const [userData, setUserData] = useContext(UserContext);
     const [defaultRating, setDefaultRating] = useState(data.rating);
+
+   // console.log("find stripeToken >>>>>", StripeToken)
+
+
     useFocusEffect(
         React.useCallback(() => {
             BackHandler.addEventListener("hardwareBackPress", backAction);
@@ -89,7 +93,7 @@ const PayNowScreenView = ({ route }) => {
                         }
                         console.log('params: ', params);
                         const { data } = await apiCall('POST', ENDPOINTS.PAYMENT_FOR_CHALLENGE, params);
-                        console.log('responce data >>>.: ', data.data);
+                        console.log('responce data in handlepayment >>>>>.: ', data);
                         if (data.status === 200) {
                             setIsLoading(false)
                             navigation.navigate("VideoCallStart", { data: data.data })
