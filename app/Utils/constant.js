@@ -23,6 +23,7 @@ export const PAYMENT_DETAIL_SCREEN_COLOUR_CODE = "#00feff";
 export const TIME_UP_START_COLOUR_CODE = "#b4daff";
 export const YELLOW_COLOUR_CODE = "#f4fb55";
 export const CHALLENGE_LATE_COLOUR_CODE = "#d4b2ff";
+export const GRAY_COLOR = "#666666"
 export const MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM';
 
 //BASE_URL
