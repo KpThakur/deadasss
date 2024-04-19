@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import ManageProfileScreen from './component/ManageProfile';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -75,12 +75,23 @@ const ManageProfile = () => {
             navigation.navigate("SettingScreen")
         }, 4000);
     };
+
+    const initialLoadRef = useRef(true);
+
     const onLoadProfileStart = () => {
+        if (!initialLoadRef.current) {
+            return;
+          }
         setProfileLoader(true)
     }
     const onLoadProfileEnd = () => {
+        if (!initialLoadRef.current) {
+            return;
+          }
         setProfileLoader(false)
+        initialLoadRef.current = false;
     }
+
     function onPressCross() {
         navigation.goBack(null)
     };

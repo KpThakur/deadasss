@@ -30,6 +30,8 @@ const ManageProfile = (props) => {
     const [CameraImage, setCameraImage] = useState(userData.profile_pic_path);
     const [filepath, setfilepath] = useState('');
 
+    console.log("find image>>>>", CameraImage)
+
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setTimePickerVisible(!timePickerVisible)
@@ -84,7 +86,8 @@ const ManageProfile = (props) => {
                         <Image
                             onLoadStart={() => props.onLoadProfileStart()}
                             onLoadEnd={() => props.onLoadProfileEnd()}
-                            source={{ uri: CameraImage }}
+                           // source={{ uri: CameraImage }}
+                            source={{ uri: `${CameraImage}` }}
                             style={{ width: 110, height: 110, borderRadius: 55 }}
                         />
                     </Fragment>
