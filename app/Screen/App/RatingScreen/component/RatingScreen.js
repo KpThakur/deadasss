@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    View, Text, Image, TextInput, ScrollView, TouchableOpacity, StatusBar, Platform
+    View, Text, Image, TextInput, TouchableOpacity, StatusBar, Platform, ScrollView
 } from 'react-native';
 import { FONT_FAMILY_REGULAR, FONT_FAMILY_TYPE_WRITER, WHITE_COLOR_CODE, CHANGE_PASSWORD_COLOUR_CODE } from '../../../../Utils/constant';
 import styles from './styles';
@@ -42,7 +42,7 @@ const RatingScreen = (props) => {
                 <StatusBar backgroundColor={CHANGE_PASSWORD_COLOUR_CODE} />
 
                 <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
-                    <View style={{ flex: 5.5, paddingTop: Platform.OS === 'ios' ? 25 : 15 }}>
+                    <View style={{ flex: 5.5, paddingTop: Platform.OS === 'ios' ? 25 : 3 }}>
                         <View style={{ flexDirection: 'row', paddingTop: 2, paddingBottom: 30, alignItems: 'center', justifyContent: 'space-between' }}>
                             <View />
                             <View style={{ flexDirection: "row" }}>
@@ -63,7 +63,7 @@ const RatingScreen = (props) => {
                         </View>
                         <CustomRatingBar />
                         <View style={{ width: '100%' }}>
-                            <Text style={{ paddingLeft: 15, fontFamily: FONT_FAMILY_TYPE_WRITER, color: WHITE_COLOR_CODE, fontSize: 20 }}>Please leave you valuable comment :</Text>
+                            <Text style={{ paddingLeft: 15, fontFamily: FONT_FAMILY_TYPE_WRITER, color: WHITE_COLOR_CODE, fontSize: 20 }}>Please leave your valuable comment :</Text>
                             <TextInput
                                 style={[styles.InputBox, {
                                     height: 100,

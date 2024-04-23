@@ -111,19 +111,9 @@ const CreateAccountView = () => {
 
     function validationFrom() {
 
-        if (loginData.Routingno == "") {
-            AnimatedAlert.showAlert()
-            setAlertMessage('Please Enter Rounting Number');
-            return false;
-        }
         if (loginData.AccHolderName == "") {
             AnimatedAlert.showAlert()
             setAlertMessage('Please Enter AccountHolder Name');
-            return false;
-        }
-        if (loginData.AccHolderType == "") {
-            AnimatedAlert.showAlert()
-            setAlertMessage('Please Select AccountHolder Type');
             return false;
         }
         if (loginData.AccNumber == "") {
@@ -131,11 +121,27 @@ const CreateAccountView = () => {
             setAlertMessage('Please Enter Account Number');
             return false;
         }
-        if (loginData.EmailId == "") {
+        if (loginData.Routingno == "") {
+            AnimatedAlert.showAlert()
+            setAlertMessage('Please Enter Rounting Number');
+            return false;
+        }
+        if (loginData.AccHolderType == "") {
+            AnimatedAlert.showAlert()
+            setAlertMessage('Please Select AccountHolder Type');
+            return false;
+        }
+        let reg = /^\s*\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+\s*$/;
+        if (loginData.EmailId == "" || loginData.EmailId.trim() === '') {
             AnimatedAlert.showAlert()
             setAlertMessage('Please Enter Email');
             return false;
         }
+        if (reg.test(loginData.EmailId) === false) {
+            AnimatedAlert.showAlert()
+            setAlertMessage("please enter correct email address");
+            return false;
+        } 
         // if (loginData.BusinessType == "") {
         //     AnimatedAlert.showAlert()
         //     setAlertMessage('Please Select Business Type');
@@ -228,12 +234,12 @@ const CreateAccountView = () => {
         }
         if (loginData.Month == "") {
             AnimatedAlert.showAlert()
-            setAlertMessage('Please Select Birthday Date');
+            setAlertMessage('Please Select Birthday Month');
             return false;
         }
         if (loginData.Year == "") {
             AnimatedAlert.showAlert()
-            setAlertMessage('Please Select Birthday Date');
+            setAlertMessage('Please Select Birthday Year');
             return false;
         }
         if (loginData.IDnumber == "") {

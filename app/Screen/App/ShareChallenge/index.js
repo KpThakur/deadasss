@@ -3,10 +3,15 @@ import ShareChallengeScreen from './component/ShareChallenge';
 import {View} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
+import AnimatedAlert from '../../../Components/AnimatedAlert'
+import { RED_COLOUR_CODE } from '../../../Utils/constant';
+const ShareChallenge = ({ route }) => {
+  const { ChallengeData } = route.params;
+  console.log('challange data:>>>> ', ChallengeData);
 
-const ShareChallenge = () => {
   const [challengeData, setChallengeData] = useState('');
-  console.log('challange data:>>>> ', challengeData);
+  const [alertMessage, setAlertMessage] = useState('');
+  
   useFocusEffect(
     useCallback(() => {
       _handleChallengeData();
@@ -23,7 +28,11 @@ const ShareChallenge = () => {
   }
   return (
     <View style={{flex: 1}}>
-      <ShareChallengeScreen challengeData={challengeData} />
+      <ShareChallengeScreen challengeData={ChallengeData} setAlertMessage={setAlertMessage} AnimatedAlert={AnimatedAlert}/>
+      <AnimatedAlert
+        alertMessage={alertMessage}
+        alertBGColor={RED_COLOUR_CODE}
+      />
     </View>
   );
 };

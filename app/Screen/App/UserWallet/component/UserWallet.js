@@ -212,8 +212,9 @@ const UserWallet = (props) => {
                         <View style={{ paddingLeft: 15 }}>
                             <Text style={{ color: '#fff', fontFamily: FONT_FAMILY_SFU_REGULAR, fontSize: 18 }}>Payment History</Text>
                             <Text style={{ color: '#fff', fontFamily: FONT_FAMILY_SFU_REGULAR, fontSize: 15 }}>Your recent payment will show here</Text>
-                            <View style={{ paddingTop: 10, paddingBottom: 70, height: '100%' }}>
+                            <View style={{ paddingTop: 10, paddingBottom: 70, height: '70%'}}>
                                 <FlatList
+                                showsVerticalScrollIndicator={false}
                                     data={props.historyData}
                                     style={{ flex: 1 }}
                                     // data={dataaa}

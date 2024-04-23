@@ -19,7 +19,7 @@ const ReportScreen = (props) => {
             <View style={styles.body}>
             <StatusBar backgroundColor={CHANGE_PASSWORD_COLOUR_CODE} />
 
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
                     <View style={{ flex: 5.5, alignItems: 'center' }}>
                         <View style={{ flexDirection: 'row', paddingTop: 50, paddingBottom: 30, alignItems: 'center', justifyContent: 'center' }}>
                             <Image source={require('../../../../Assets/big_star.png')} />

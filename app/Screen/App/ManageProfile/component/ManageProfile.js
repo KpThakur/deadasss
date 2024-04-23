@@ -30,6 +30,8 @@ const ManageProfile = (props) => {
     const [CameraImage, setCameraImage] = useState(userData.profile_pic_path);
     const [filepath, setfilepath] = useState('');
 
+    console.log("find image>>>>", CameraImage)
+
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setTimePickerVisible(!timePickerVisible)
@@ -84,7 +86,8 @@ const ManageProfile = (props) => {
                         <Image
                             onLoadStart={() => props.onLoadProfileStart()}
                             onLoadEnd={() => props.onLoadProfileEnd()}
-                            source={{ uri: CameraImage }}
+                           // source={{ uri: CameraImage }}
+                            source={{ uri: `${CameraImage}` }}
                             style={{ width: 110, height: 110, borderRadius: 55 }}
                         />
                     </Fragment>
@@ -141,7 +144,7 @@ const ManageProfile = (props) => {
             <View style={styles.body}>
                 <StatusBar backgroundColor={CHANGE_PASSWORD_COLOUR_CODE} />
 
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
                     <View style={{ flex: 2, justifyContent: 'center', paddingBottom: 30 }}>
                         <View style={{ flexDirection: 'row', paddingTop: Platform.OS === 'ios' ? 30 : 5, paddingBottom: 30, alignItems: 'center', justifyContent: 'space-between' }}>
                             <View />
@@ -186,8 +189,9 @@ const ManageProfile = (props) => {
                         />
                         <TouchableOpacity onPress={() => onPressGender()} style={styles.genderContainer}>
                             <Text style={styles.genderText}>
-                                {Gender === ""  && 'Gender'}
-                                {Gender === null  && 'Gender'}
+                                {Gender ? null : 'Gender'}
+                                {/* {Gender === ""  && 'Gender'}
+                                {Gender === null  && 'Gender'} */}
                                 {Gender === 1 && 'Male'}
                                 {Gender === 2 && 'Female'}
                             </Text>

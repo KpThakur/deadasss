@@ -31,7 +31,7 @@ const ActiveChallengeList = (props) => {
         <View style={styles.container}>
             <View style={styles.body}>
              <StatusBar backgroundColor={CHANGE_PASSWORD_COLOUR_CODE} />
-                <View style={{ flex: 5, justifyContent: 'center',paddingTop:20 }}>
+                <View style={{ flex: 5.5, justifyContent: 'center',paddingTop:20 }}>
                     <View style={{ flexDirection: 'row', paddingTop:10, paddingBottom: 30, alignItems: 'center', justifyContent: 'space-between' }}>
                             <View />
                             <View style={{ flexDirection: "row" }}>
@@ -70,6 +70,7 @@ const ActiveChallengeList = (props) => {
                         <Text style={styles.LoginTextSTyle}>Past Challenge List</Text>
                     </View>
                     <FlatList
+                        showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         data={props.ExpireList}
 

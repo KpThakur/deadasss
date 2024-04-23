@@ -16,7 +16,7 @@ const Input = (props) => {
             <Image style={[logoStyle]} source={leftImage} />
             <TextInput
                 onChangeText={(text) => onChangeText(text)}
-                keyboardType="default"
+               // keyboardType="default"
                 autoCapitalize={autoCapitalize}
                 autoFocus={autoFocus}
                 keyboardType={keyboardType}

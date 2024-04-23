@@ -16,6 +16,8 @@ const ChallengeTimeRemaining = ({ route }) => {
     const [alertMessage, setAlertMessage] = useState('');
     const [ChallengeData, setChallengeData] = useState(data);
 
+   // console.log("find challange data ???????????:- ", ChallengeData)
+
     const seconds = (data.expire_time - data.current_time);
     var confirm = moment.utc(moment.duration(seconds, 'seconds').as('milliseconds')).format('mm');
     const [counter, setCounter] = React.useState(confirm);
@@ -75,7 +77,7 @@ const ChallengeTimeRemaining = ({ route }) => {
     // var confirmMinutes = parseInt(duration.asMinutes()) % 60;
 
     function onPressShare() {
-        navigation.navigate("ShareChallenge")
+        navigation.navigate("ShareChallenge", {ChallengeData: ChallengeData})
     };
     function onPressUser() {
         navigation.navigate("SettingScreen")
