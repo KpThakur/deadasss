@@ -23,8 +23,12 @@ const Styles = StyleSheet.create({
         fontSize: 30
     },
     DontHaveView: {
-        paddingLeft: 10,
-        paddingRight: 10
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        // paddingLeft: 10,
+        // paddingRight: 10
     },
     VerifyDescrptn: {
         fontFamily: FONT_FAMILY_TYPE_WRITER,
@@ -34,7 +38,8 @@ const Styles = StyleSheet.create({
         fontFamily: FONT_FAMILY_TYPE_WRITER,
         textAlign: 'center',
         color: BLACK_COLOUR_CODE,
-        fontSize: 16
+        fontSize: 16,
+        paddingHorizontal:2
     },
     SendCodeTxt: {
         fontFamily: FONT_FAMILY_TYPE_WRITER,
