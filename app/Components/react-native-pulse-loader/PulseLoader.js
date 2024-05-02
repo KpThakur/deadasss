@@ -36,6 +36,7 @@ export default class LocationPulseLoader extends React.Component {
 			toValue: this.props.pressInValue,
 			duration: this.props.pressDuration,
 			easing: this.props.pressInEasing,
+			useNativeDriver: false, // Add this line
 		}).start(() => clearInterval(this.setInterval));
 	}
 
@@ -44,6 +45,7 @@ export default class LocationPulseLoader extends React.Component {
 			toValue: 1,
 			duration: this.props.pressDuration,
 			easing: this.props.pressOutEasing,
+			 useNativeDriver: false, // Add this line
 		}).start(this.setCircleInterval.bind(this));
 	}
 

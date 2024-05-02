@@ -2,12 +2,11 @@ import {AppRegistry, DeviceEventEmitter} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage';
 // import IncomingCall from 'react-native-incoming-call';
-import TrackPlayer from 'react-native-track-player';
 import * as RootNavigation from './RootNavigation';
 import App from './App';
 import 'react-native-gesture-handler';
 import {name as appName} from './app.json';
-
+import TrackPlayer from 'react-native-track-player'
 messaging().setBackgroundMessageHandler(async remoteMessage => {
   global.notification = remoteMessage;
   // console.log("Message handled in the background! 1", remoteMessage);
@@ -46,4 +45,5 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
   //   });
 });
 
+TrackPlayer.registerPlaybackService(() => require('./service'));
 AppRegistry.registerComponent(appName, () => App);

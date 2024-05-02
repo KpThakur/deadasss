@@ -28,7 +28,12 @@ const ChallengeCode = () => {
       AnimatedAlert.showAlert();
       setAlertMessage('Please enter challenge code you have');
       return false;
-    } else {
+    }else if (Code.length !== 5) {
+      AnimatedAlert.showAlert();
+      setAlertMessage('Please enter a 5-digit challenge code');
+      return false;
+    }
+     else {
       return true;
     }
   };
