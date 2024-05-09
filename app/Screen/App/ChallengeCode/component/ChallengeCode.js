@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     View, Text, Image, ScrollView, TouchableOpacity, StatusBar,Platform
 } from 'react-native';
@@ -7,6 +7,13 @@ import { BLACK_COLOUR_CODE, COMMON_BLUE_COLOUR, WHITE_COLOR_CODE, YELLOW_COLOUR_
 import Button from '../../../../Components/Button';
 import OTPTextView from '../../../../Components/OtpVerification'
 const ChallengeCodeScreen = (props) => {
+
+    useEffect(() => {
+        if (props.Code) {
+         props.otpRef.current?.setValue(props.Code);
+        }
+      }, [props.Code]); 
+
     return (
         <View style={styles.container}>
             <View style={styles.body}>
@@ -29,7 +36,9 @@ const ChallengeCodeScreen = (props) => {
                         {/* <Text style={[styles.VerifyDescrptn, { bottom: 20 }]}>received on {props.Email}</Text> */}
                     </View>
                     <OTPTextView
+                        ref={props.otpRef}
                         handleTextChange={(val) => props.handleOtp(val)}
+                      //  handleTextChange={(val) => console.log("OTP Value:", val)}
                         tintColor={COMMON_BLUE_COLOUR}
                         containerStyle={{
                             flexDirection: "row",

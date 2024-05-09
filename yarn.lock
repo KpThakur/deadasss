@@ -1746,6 +1746,11 @@
   dependencies:
     plist "^3.1.0"
 
+"@react-native-firebase/dynamic-links@^19.2.2":
+  version "19.2.2"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/dynamic-links/-/dynamic-links-19.2.2.tgz#383d08b420f9acb8490008b1e7504d23b0b5a498"
+  integrity sha512-nZxUuKG8hX0f3iiHobVYn2gDlVw7eb9YU+xD0ybvKGsG00lT7g43pkDhyb4hBg8QVtRgbO/28x0vxF1CZ7jhEw==
+
 "@react-native-firebase/messaging@^18.8.0":
   version "18.9.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-18.9.0.tgz#7c814145717407192534d54baa354036978cee6a"
@@ -6945,7 +6950,7 @@ react-native-status-bar-height@^2.6.0:
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"
   integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==
 
-react-native-track-player@^4.0.1:
+react-native-track-player@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-native-track-player/-/react-native-track-player-4.1.1.tgz#96f8688f270c5a01bc597b6331843b191402502b"
   integrity sha512-E5N/eK/+HtAVJUAzXpm1cWz8ROheV9jb0TI6h2bM+333U+DWibTTnT2T1122FkCoXLXIYavtm2FR2if+5jH8cA==

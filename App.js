@@ -16,6 +16,7 @@ import ENDPOINTS from '././app/Utils/apiEndPoints';
 const App = () => {
   async function navigationService(remoteMessage) {
     RootNavigation.navigate('VocieCall', {remoteMessage: remoteMessage});
+    console.log('find remoteMessage message>>>>', remoteMessage);
   }
 
   useEffect(() => {
@@ -44,10 +45,20 @@ const App = () => {
 
     requestUserPermission();
     const unsubscribe = messaging().onMessage(async remoteMessage => {
+      console.log("Foreground message received:", remoteMessage);
       remoteMessage.data.room_id
         ? navigationService(remoteMessage)
         : console.log(remoteMessage.notification.title);
     });
+
+    // messaging().onMessage(async remoteMessage => {
+    //   console.log("Foreground message received:", remoteMessage);
+    //   if (remoteMessage.data.room_id) {
+    //     navigationService(remoteMessage);
+    //   } else {
+    //     console.log("Notification:", remoteMessage.notification.title);
+    //   }
+    // });
 
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       global.notification = remoteMessage;
@@ -89,7 +100,7 @@ const App = () => {
     } catch (error) {
       console.log('error in catch>>>>>>:', error);
     }
-  }
+  };
 
   return (
     <View style={{flex: 1}}>

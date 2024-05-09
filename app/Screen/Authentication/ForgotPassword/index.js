@@ -47,6 +47,7 @@ const ForgotPassword = () => {
           setDefaultHeader('authorization', data.token);
           setIsLoading(false);
           navigation.navigate('OTPVerification', {Email: Email});
+          console.log("forget data in >>>>", data)
         } else if (data.status === 201) {
           setAlertMessage(data.message);
           AnimatedAlert.showAlert();
