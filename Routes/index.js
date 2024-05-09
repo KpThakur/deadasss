@@ -54,12 +54,12 @@ import UserWalletScreen from '../app/Screen/App/UserWallet';
 import WebViewScreen from '../app/Screen/App/WebView';
 import VideoPlayScreen from '../app/Screen/App/VideoPlay';
 import PaymentReturnScreen from '../app/Screen/App/PaymentReturn';
-import dynamicLinks from '@react-native-firebase/dynamic-links';
-
 // import * as RootNavigation from "../RootNavigation";
 
 import stripe from 'tipsi-stripe';
 import {useFocusEffect} from '@react-navigation/native';
+import WithdrawScreen from '../app/Screen/App/UserWallet/component/withdrawScreen';
+import SucessScreen from '../app/Screen/App/UserWallet/component/sucessScreen';
 import ChallengeCode from '../app/Screen/App/ChallengeCode';
 
 const Stack = createStackNavigator();
@@ -127,9 +127,11 @@ function AppStack() {
       <Stack.Screen name="VocieCall" component={VocieCallScreen} />
       <Stack.Screen name="UserWallet" component={UserWalletScreen} />
       <Stack.Screen name="PaymentReturn" component={PaymentReturnScreen} />
-
+      <Stack.Screen name="WithdrawScreen" component={WithdrawScreen} />
       <Stack.Screen name="WebView" component={WebViewScreen} />
       <Stack.Screen name="VideoPlay" component={VideoPlayScreen} />
+      <Stack.Screen name="successScreen" component={SucessScreen} />
+
       <Stack.Screen
         name="TermAndCondition"
         component={TermAndConditionScreen}
@@ -216,9 +218,6 @@ function AuthLoading() {
       dispatch({type: 'RETRIEVE_TOKEN', token: userToken});
     }, 3000);
   }, []);
-
-  
-
   if (loginState.isLoading) {
     return (
       <View style={styles.ViewContainer}>
@@ -256,8 +255,6 @@ function Route(props) {
   //       }, 3000);
   // },[])
 
-
-  
   const config = {
     screens: {
       ChallengeCode: {
@@ -266,14 +263,14 @@ function Route(props) {
           path: 'ChallengeCode',
         },
       },
-  }
-}
+    },
+  };
 
   const linking = {
     // prefixes: ['http://68.183.93.52/deadasss/', 'deadasss://'],
     // prefixes: ['https://deadasss.com:3000/', 'deadasss://'],
     prefixes: ['https://deadasss.page.link', 'deadasss://'],
-   // config,
+    // config,
   };
 
   useEffect(() => {
