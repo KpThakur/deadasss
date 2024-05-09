@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect, useRef} from 'react';
 import ChallengeCodeScreen from './component/ChallengeCode';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -10,13 +10,33 @@ import AnimatedAlertSuccess from '../../../Components/AnimatedAlertSuccess';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
 import moment from 'moment';
 
-const ChallengeCode = () => {
+const ChallengeCode = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [Code, setCode] = useState('');
   const [alertSuccessMessage, setAlertSuccessMessage] = useState('');
+  const otpRef = useRef(null);
+   console.log("find code>>>>", Code)
 
-  // console.log("find code>>>>", Code)
+  //  console.log("ChallengeCode from route params:", route.params?.challengeCode);
+  
+  //  useEffect(() => {
+    
+  //   if (route.params?.challengeCode) {
+  //     setCode(route.params.challengeCode); 
+  //     otpRef.current?.setValue(route.params.challengeCode); 
+  //   }
+  // }, [route.params]);
+  
+
+
+  // useEffect(() => {
+  //   if (route.params?.challengeCode) {
+  //     otpRef.current?.setValue(route.params.challengeCode);
+  //   }
+  // }, [route.params]);
+
+ 
 
   function handleOtp(value) {
     setCode(value);
@@ -125,6 +145,8 @@ const ChallengeCode = () => {
         onPressResendCode={onPressResendCode}
         navTermAndCondtion={navTermAndCondtion}
         onPressCross={onPressCross}
+        otpRef={otpRef}
+        Code={Code}
       />
       <AnimatedAlert
         alertMessage={alertMessage}
