@@ -30,17 +30,17 @@ const ShareChallenge = props => {
     try {
       const result = await Share.share({
         title: 'Verification Code',
-        message: `Please Install Deadasss app, 1 on 1 videocall with me :  ${props.challengeData.deep_linking_url}\r\n\r\n Code is: ${props.challengeData.challenge_code}\r\n\r\n ${props.challengeData.challenge_video}`,
+        message: `Please Install Deadasss app, 1 on 1 videocall with me :  ${props?.challengeData?.deep_linking_url}\r\n\r\n Code is: ${props?.challengeData?.challenge_code}\r\n\r\n ${props?.challengeData?.challenge_video}`,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
         } else {
           // shared
-          console.log('shared: ', shared);
+         // console.log('shared: ', shared);
         }
       } else if (result.action === Share.dismissedAction) {
         // dismissed
-        console.log('dismissed: ', dismissed);
+       // console.log('dismissed: ', dismissed);
       }
     } catch (error) {
       // alert(error.message);
@@ -48,15 +48,15 @@ const ShareChallenge = props => {
   }
 
   const postOnFacebook = () => {
-    let facebookShareURL = props.challengeData.challenge_video;
+    let facebookShareURL = props?.challengeData?.challenge_video;
     let facebookParameters = [];
     if (facebookShareURL)
       facebookParameters.push('u=' + encodeURI(facebookShareURL));
-    if (props.challengeData.challenge_code)
+    if (props?.challengeData?.challenge_code)
       facebookParameters.push(
         'quote=' +
           encodeURI(
-            `Please Install Deadasss app, 1 on 1 videocall with me : ${props.challengeData.deep_linking_url}\r\n\r\nCode is:  ${props.challengeData.challenge_code}\r\n\r\n`,
+            `Please Install Deadasss app, 1 on 1 videocall with me : ${props?.challengeData?.deep_linking_url}\r\n\r\nCode is:  ${props?.challengeData?.challenge_code}\r\n\r\n`,
           ),
       );
     const url =
@@ -87,9 +87,9 @@ const ShareChallenge = props => {
 
   const WhatsappFun = () => {
     let message =
-      `Please Install Deadasss app, 1 on 1 videocall with me: ${props.challengeData.deep_linking_url}\n\n` +
-      `Code is: ${props.challengeData.challenge_code}\n\n` +
-      `${props.challengeData.challenge_video}`;
+      `Please Install Deadasss app, 1 on 1 videocall with me: ${props?.challengeData?.deep_linking_url}\n\n` +
+      `Code is: ${props?.challengeData?.challenge_code}\n\n` +
+      `${props?.challengeData?.challenge_video}`;
 
     let url = `whatsapp://send?text=${encodeURIComponent(message)}`;
 
@@ -110,9 +110,9 @@ const ShareChallenge = props => {
 
   const shareViaSms = () => {
     let message =
-      `Please Install Deadasss app, 1 on 1 videocall with me: ${props.challengeData.deep_linking_url}\n\n` +
-      `Code is: ${props.challengeData.challenge_code}\n\n` +
-      `${props.challengeData.challenge_video}`;
+      `Please Install Deadasss app, 1 on 1 videocall with me: ${props?.challengeData?.deep_linking_url}\n\n` +
+      `Code is: ${props?.challengeData?.challenge_code}\n\n` +
+      `${props?.challengeData?.challenge_video}`;
 
     let url = `sms:&body=${encodeURIComponent(message)}`;
 
@@ -138,8 +138,8 @@ const ShareChallenge = props => {
       fileCache: true,
       appendExt: 'mp4',
     })
-      .fetch('GET', props.challengeData.challenge_video, {})
-      .then((res: any) => {
+      .fetch('GET', props?.challengeData?.challenge_video, {})
+      .then((res) => {
         setLoader(false);
         let shareOptions = {
           title: 'Hello Deadass',
@@ -147,8 +147,8 @@ const ShareChallenge = props => {
           // url:  res.path(),
           url: `file://${res.path()}`,
           type: 'video/mp4',
-          subject: props.challengeData.deep_linking_url, //  for email
-          social: ShareWhastap.Social.WHATSAPP,
+          subject: props?.challengeData?.deep_linking_url, //  for email
+          social: ShareWhastap?.Social?.WHATSAPP,
         };
         ShareWhastap.shareSingle(shareOptions);
         // ShareWhastap.shareSingle(Object.assign(shareOptions, {
@@ -160,10 +160,10 @@ const ShareChallenge = props => {
   const EmailFun = async () => {
     console.log(
       'props.challengeData.deep_linking_url',
-      props.challengeData.deep_linking_url,
+      props?.challengeData?.deep_linking_url,
     );
     const subject = 'Deadass';
-    const message = `Please Install Deadasss app, 1 on 1 videocall with me :  ${props.challengeData.deep_linking_url} \r\n\r\nCode is : ${props.challengeData.challenge_code}\r\n \r\n${props.challengeData.challenge_video}`;
+    const message = `Please Install Deadasss app, 1 on 1 videocall with me :  ${props?.challengeData?.deep_linking_url} \r\n\r\nCode is : ${props?.challengeData?.challenge_code}\r\n \r\n${props?.challengeData?.challenge_video}`;
     // Linking.openURL(`mailto:?subject=${subject}&body=${message}`)
 
     Linking.openURL(
@@ -182,8 +182,8 @@ const ShareChallenge = props => {
       fileCache: true,
       appendExt: 'mp4',
     })
-      .fetch('GET', props.challengeData.challenge_video, {})
-      .then(async (res: any) => {
+      .fetch('GET', props?.challengeData?.challenge_video, {})
+      .then(async (res) => {
         setLoader(false);
         console.log('sachin', res);
         let shareOptions = {
@@ -191,17 +191,17 @@ const ShareChallenge = props => {
           message:
             'Please Install Deadasss app, 1 on 1 videocall with me : ' +
             '  ' +
-            props.challengeData.deep_linking_url +
+            props?.challengeData?.deep_linking_url +
             '  ' +
             'Code is:' +
             '  ' +
-            props.challengeData.challenge_code,
+            props?.challengeData?.challenge_code,
           url: 'file://' + res.path(),
           type: 'video/mp4',
           // subject: props.challengeData.deep_linking_url,
           // method: ShareWhastap.InstagramStories.SHARE_BACKGROUND_IMAGE,
           //  backgroundImage:'file://' + res.path(),
-          social: ShareWhastap.Social.INSTAGRAM_STORIES,
+          social: ShareWhastap?.Social?.INSTAGRAM_STORIES,
           failOnCancel: false,
           forceDialog: true,
         };
@@ -218,23 +218,23 @@ const ShareChallenge = props => {
   };
 
   const [twitterShareURL, setTwitterShareURL] = useState(
-    props.challengeData.challenge_video,
+    props?.challengeData?.challenge_video,
   );
   const [tweetContent, setTweetContent] = useState(
-    `Please Install Deadasss app, 1 on 1 videocall with me : ${props.challengeData.deep_linking_url}\r\n\r\n Code is: ${props.challengeData.challenge_code}\r\n\r\n`,
+    `Please Install Deadasss app, 1 on 1 videocall with me : ${props?.challengeData?.deep_linking_url}\r\n\r\n Code is: ${props?.challengeData?.challenge_code}\r\n\r\n`,
   );
   const [twitterViaAccount, setTwitterViaAccount] = useState('Deadasss');
 
   const tweetNow = async () => {
-    let facebookShareURL = props.challengeData.challenge_video;
+    let facebookShareURL = props?.challengeData?.challenge_video;
     let facebookParameters = [];
     if (facebookShareURL)
       facebookParameters.push('url=' + encodeURI(facebookShareURL));
-    if (props.challengeData.challenge_code)
+    if (props?.challengeData?.challenge_code)
       facebookParameters.push(
         'text=' +
           encodeURI(
-            `Please Install Deadasss app, 1 on 1 videocall with me : ${props.challengeData.deep_linking_url}\r\n\r\nCode is:  ${props.challengeData.challenge_code}\r\n\r\n`,
+            `Please Install Deadasss app, 1 on 1 videocall with me : ${props?.challengeData?.deep_linking_url}\r\n\r\nCode is:  ${props?.challengeData?.challenge_code}\r\n\r\n`,
           ),
       );
 
@@ -255,22 +255,22 @@ const ShareChallenge = props => {
       fileCache: true,
       appendExt: 'mp4',
     })
-      .fetch('GET', props.challengeData.challenge_video, {})
-      .then((res: any) => {
+      .fetch('GET', props?.challengeData?.challenge_video, {})
+      .then((res) => {
         setLoader(false);
         let shareOptions = {
           title: 'Hello Deadass',
           message:
             'Please Install Deadasss app, 1 on 1 videocall with me : ' +
             '  ' +
-            props.challengeData.deep_linking_url +
+            props?.challengeData?.deep_linking_url +
             '  ' +
             'Code is:' +
             '  ' +
-            props.challengeData.challenge_code,
+            props?.challengeData?.challenge_code,
           url: 'file://' + res.path(),
           type: 'video/mp4',
-          subject: props.challengeData.deep_linking_url, //  for email
+          subject: props?.challengeData?.deep_linking_url, //  for email
         };
         ShareWhastap.shareSingle(
           Object.assign(shareOptions, {

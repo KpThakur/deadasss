@@ -4,7 +4,7 @@ import {navigate} from '../../../../RootNavigation';
 import {View, BackHandler} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import Loader from '../../../Utils/Loader';
-import TrackPlayer, { Capability } from 'react-native-track-player';
+import TrackPlayer, { Capability, RepeatMode,  } from 'react-native-track-player';
 import AnimatedAlert from '../../../Components/AnimatedAlert';
 import {apiCall} from '../../../Utils/httpClient';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
@@ -100,6 +100,7 @@ const VocieCall = ({navigation, route}) => {
         url: require('../../../../app/skype-23266.mp3'),
       });
       await TrackPlayer.play();
+      await TrackPlayer.setRepeatMode(RepeatMode.Track)
     } else {
       console.log('Failed to play');
     }
