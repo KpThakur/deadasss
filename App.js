@@ -72,15 +72,24 @@ const App = () => {
       console.log('Authorization status:', authStatus);
     }
   }
+  // const getFcmToken = async () => {
+  //   const fcmToken = await messaging().getToken();
+  //   if (fcmToken) {
+  //     await AsyncStorage.setItem('fcmToken', fcmToken);
+  //     console.log('find fcmToken>>>>>>:', fcmToken);
+  //   } else {
+  //     console.log('Failed', 'No token received');
+  //   }
+  // };
+
   const getFcmToken = async () => {
-    const fcmToken = await messaging().getToken();
-    if (fcmToken) {
-      await AsyncStorage.setItem('fcmToken', fcmToken);
-      console.log('find fcmToken>>>>>>:', fcmToken);
-    } else {
-      console.log('Failed', 'No token received');
+    try {
+      const fcmToken = await messaging().getToken();
+       console.log('find fcmToken>>>>>>:', fcmToken);
+    } catch (error) {
+      console.log('error in catch>>>>>>:', error);
     }
-  };
+  }
 
   return (
     <View style={{flex: 1}}>
