@@ -44,6 +44,7 @@ const RegistrationScreen = (props) => {
   const [ModalVisible, setModalVisible] = useState(false);
   const [CountrySelected, setCountrySelected] = useState("");
   const [CountryCode, setCountryCode] = useState("");
+  const [Countryname, setCountryname] = useState("");
   const [FlagSelected, setFlagSelected] = useState("");
 
   const [date, setDate] = useState(new Date());
@@ -97,9 +98,12 @@ const RegistrationScreen = (props) => {
       Gender: Gender,
       BirthDay: BirthDay,
       CountryCode: CountryCode,
+      Countryname: Countryname
     };
     props._handleRegistration(parameters);
   }
+
+  console.log("find country name???", CountryCode + Countryname)
   function _handleRegion() {
     SetfilterCountry(CountryData);
     setModalVisible(true);
@@ -107,6 +111,7 @@ const RegistrationScreen = (props) => {
   function OnpressCountry(item) {
     setCountryCode(item.dial_code);
     setCountrySelected(item.name);
+    setCountryname(item.name)
     setFlagSelected(item.flag);
     setModalVisible(false);
   }

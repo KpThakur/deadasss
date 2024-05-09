@@ -5,6 +5,7 @@ import {
   WHITE_COLOR_CODE,
   FONT_FAMILY_TYPE_WRITER,
   BLACK_COLOUR_CODE,
+  GRAY_COLOR,
 } from '../../Utils/constant';
 const Input = props => {
   const {
@@ -40,7 +41,8 @@ const Input = props => {
         secureTextEntry={secureTextEntry}
         value={value}
         placeholderTextColor={placeholderTextColor}
-        selectionColor={'transparent'}
+        // selectionColor={'transparent'}
+        selectionColor={GRAY_COLOR}
         style={[textInput, textInputStyle]}
         maxLength={maxLength}
         numberOfLines={props.numberOfLines}

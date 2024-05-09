@@ -60,6 +60,7 @@ import stripe from 'tipsi-stripe';
 import {useFocusEffect} from '@react-navigation/native';
 import WithdrawScreen from '../app/Screen/App/UserWallet/component/withdrawScreen';
 import SucessScreen from '../app/Screen/App/UserWallet/component/sucessScreen';
+import ChallengeCode from '../app/Screen/App/ChallengeCode';
 
 const Stack = createStackNavigator();
 const Auth = createStackNavigator();
@@ -254,9 +255,22 @@ function Route(props) {
   //       }, 3000);
   // },[])
 
+  const config = {
+    screens: {
+      ChallengeCode: {
+        screen: ChallengeCodeScreen,
+        linking: {
+          path: 'ChallengeCode',
+        },
+      },
+    },
+  };
+
   const linking = {
     // prefixes: ['http://68.183.93.52/deadasss/', 'deadasss://'],
-    prefixes: ['https://deadasss.com:3000/', 'deadasss://'],
+    // prefixes: ['https://deadasss.com:3000/', 'deadasss://'],
+    prefixes: ['https://deadasss.page.link', 'deadasss://'],
+    // config,
   };
 
   useEffect(() => {

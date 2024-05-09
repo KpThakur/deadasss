@@ -99,7 +99,11 @@ const RegistrationView = () => {
             AnimatedAlert.showAlert()
             setAlertMessage("Confirm password and password doesn't match ")
             return false;
-        }
+        }if (!parameters.CountryCode && parameters.Countryname === '') {
+            AnimatedAlert.showAlert()
+            setAlertMessage("Please select your country")
+            return false;
+        } 
         //  if (parameters.CountryCode == '') {
         //     AnimatedAlert.showAlert()
         //     setAlertMessage('Please select your country');
@@ -141,11 +145,13 @@ const RegistrationView = () => {
                 formdata.append("device_token", deviceToken)
                 formdata.append("device_type", deviceType)
                 formdata.append("country_code", parameters.CountryCode)
+                formdata.append("country_name", parameters.Countryname)
                 filepath.path && formdata.append('profile_pic', {
                     uri: filepath.path,
                     type: filepath.mime,
                     name: filepath.path.substring(filepath.path.lastIndexOf('/') + 1)
                 });
+                console.log("form data ...???...", formdata)
                 const { data } = await apiCall('POST', ENDPOINTS.USER_SIGN_UP, formdata);
                 if (data.status === 200) {
                     setUserData(data.data)

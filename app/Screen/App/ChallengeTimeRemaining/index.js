@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ChallengeTimeRemainingScreen from './component/ChallengeTimeRemaining';
 import { View, BackHandler } from 'react-native';
 import moment from "moment";
@@ -8,6 +8,7 @@ import Loader from '../../../Utils/Loader';
 import { apiCall } from '../../../Utils/httpClient';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
 import { RED_COLOUR_CODE } from '../../../Utils/constant';
+import AsyncStorage from '@react-native-community/async-storage';
 const ChallengeTimeRemaining = ({ route }) => {
     const { data } = route.params;
     const [openDialog, setOpenDialog] = useState(false)
@@ -15,8 +16,9 @@ const ChallengeTimeRemaining = ({ route }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const [ChallengeData, setChallengeData] = useState(data);
+    const [challengeDataShare, setChallengeDataShare] = useState('');
 
-   // console.log("find challange data ???????????:- ", ChallengeData)
+  //  console.log("find challengeDataShare ???????????:- ", challengeDataShare)
 
     const seconds = (data.expire_time - data.current_time);
     var confirm = moment.utc(moment.duration(seconds, 'seconds').as('milliseconds')).format('mm');
@@ -76,8 +78,23 @@ const ChallengeTimeRemaining = ({ route }) => {
     // var duration = moment.duration(endTime.diff(startTime));
     // var confirmMinutes = parseInt(duration.asMinutes()) % 60;
 
+    useFocusEffect(
+        useCallback(() => {
+          _handleChallengeData();
+          return () => {
+            _handleChallengeData();
+          };
+        }, []),
+      );
+    
+      async function _handleChallengeData() {
+        const challengeData = await AsyncStorage.getItem('challengeData');
+        const challenge_data = JSON.parse(challengeData);
+        setChallengeDataShare(challenge_data);
+      }
+
     function onPressShare() {
-        navigation.navigate("ShareChallenge", {ChallengeData: ChallengeData})
+        navigation.navigate("ShareChallenge", {ChallengeData: challengeDataShare})
     };
     function onPressUser() {
         navigation.navigate("SettingScreen")
