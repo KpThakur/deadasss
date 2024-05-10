@@ -366,7 +366,7 @@ const UserWallet = props => {
                                 fontFamily: FONT_FAMILY_SFU_REGULAR,
                                 fontSize: 15,
                               }}>
-                              {item.payment_status == 4
+                              {item.payment_status == 5
                                 ? item.challenge_title
                                 : item.amount_pay_by}
                             </Text>
@@ -385,16 +385,15 @@ const UserWallet = props => {
                           <Text
                             style={{
                               fontSize: 15,
+                              fontWeight: 'bold',
                               color:
-                                item.payment_status == 4
-                                  ? '#3124F4'
-                                  : item.payment_status == 3
+                                item.payment_status == 5
                                   ? '#F23C23'
                                   : '#fff',
                               fontFamily: FONT_FAMILY_SFU_REGULAR,
                             }}>
-                            {item.payment_status == 3 ? '-' : null} ${' '}
-                            {item.payment_amount}
+                            {item.payment_status == 5 ? '-' : '+'} ${' '}
+                            {item.transferamount}
                           </Text>
                         </View>
                       </View>
