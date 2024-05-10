@@ -20,7 +20,7 @@ const Styles = StyleSheet.create({
         backgroundColor: WHITE_COLOR_CODE
     },
     FirstCOntainer: {
-        paddingTop: 30,
+       // paddingTop: 30,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -49,6 +49,12 @@ const Styles = StyleSheet.create({
         fontSize: 17,
         textAlign: 'center'
     },
+    imgStyle:{
+        width: 200,
+        height:90,
+
+        
+    }
  
 })
 export default Styles;

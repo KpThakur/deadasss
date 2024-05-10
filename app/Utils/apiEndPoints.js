@@ -35,7 +35,8 @@ export default {
     //Receiver end
     CHALLENGE_CODE_VERIFY: '/api/payment/challengeCodeVerify',
     PAYMENT_FOR_CHALLENGE: '/api/payment/paymentForChallenge',
-
+    PAYMENT_CHECK: '/api/payment/checkAlreadypaid',
+     
     //Video calling
     CHECK_BUSY_CALL: '/api/videocall/checkBusyCall',
     VIDEO_CALLING: '/api/videocall/continueVideoCall',

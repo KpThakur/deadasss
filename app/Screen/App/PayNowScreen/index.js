@@ -10,6 +10,7 @@ import { RED_COLOUR_CODE } from '../../../Utils/constant';
 import { UserContext } from '../../../Utils/UserContext';
 import moment from "moment";
 import stripe from "tipsi-stripe";
+import AsyncStorage from '@react-native-community/async-storage';
 const PayNowScreenView = ({ route }) => {
     const { data } = route.params;
     const navigation = useNavigation()
@@ -71,7 +72,20 @@ const PayNowScreenView = ({ route }) => {
 
 
     const _handlePayment = async (form) => {
-        await stripe.paymentRequestWithCardForm({
+
+        const {data} = await apiCall('POST', ENDPOINTS.GET_STRIPE_KEY);
+        console.log('find stripeKeyDynamic >>>>>>>>>>>>', data.data);
+        console.log('🚀  file: index.js  line 258  stripeKeyDynamic  data', data);
+        if (data.status === 200) {
+            await AsyncStorage.setItem('agoraId', data.data.agora_app_certificate);
+
+            await stripe.setOptions({
+            publishableKey: data.data.public_key,
+            // androidPayMode: 'test', // Android only
+          });
+
+
+          await stripe.paymentRequestWithCardForm({
             theme: {
                 primaryBackgroundColor: 'white',
                 secondaryBackgroundColor: 'white',
@@ -80,8 +94,7 @@ const PayNowScreenView = ({ route }) => {
                 accentColor: 'blue',
                 errorColor: 'red',
             },
-        })
-            .then(async (token) => {
+        }).then(async (token) => {
                 setStripeToken(token.id)
                 try {
                     setIsLoading(true)
@@ -96,6 +109,7 @@ const PayNowScreenView = ({ route }) => {
                         console.log('responce data in handlepayment >>>>>.: ', data);
                         if (data.status === 200) {
                             setIsLoading(false)
+                            console.log('responce data in 200 handlepayment >>>>>.: ', data.data)
                             navigation.navigate("VideoCallStart", { data: data.data })
                         } else if (data.status === 201) {
                             setAlertMessage(data.message);
@@ -118,6 +132,18 @@ const PayNowScreenView = ({ route }) => {
             }).catch(err => {
                 console.log('err', err)
             });
+        } else if (data.status === 201) {
+            setAlertMessage(data.message);
+            AnimatedAlert.showAlert()
+            
+        } else if (data.status === 401) {
+            setAlertMessage(data.message);
+            AnimatedAlert.showAlert()
+        }
+
+
+
+       
     }
 
 
