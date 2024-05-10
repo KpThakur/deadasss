@@ -157,44 +157,52 @@ const UserWallet = props => {
   }
   async function WithdrawalFun() {
     try {
-      setIsLoading(true);
-      const {data} = await apiCall('POST', ENDPOINTS.checkStripeAccountVerify);
-      console.log('🚀 ~ WithdrawalFun ~ data:', data);
-      if (data.status === 200) {
-        // navigation.navigate('WithdrawScreen', userWalletDetails);
-        navigation.navigate('WithdrawScreen', {
-          WalletDetails: userWalletDetails,
-          onPressCross: onPressCross,
-          userWalletDetailsfun: _UserWalletDetails,
-        });
-        console.log('====================================');
-        console.log(userWalletDetails);
-        console.log('====================================');
-        setIsLoading(false);
-      } else if (data.status === 201) {
-        // setvisible(true);
-        setIsLoading(false);
-        setAlertMessage(data.message);
+      if (userWalletDetails?.user_wallet == 0) {
+        setAlertMessage('For withdrawal amount should be more than 0');
         AnimatedAlert.showAlert();
-      } else if (data.status === 202) {
-        setIsLoading(false);
-        openModal();
-        // setAlertMessage(data.message);
-        // AnimatedAlert.showAlert()
-      } else if (data.status === 203) {
-        setIsLoading(false);
-        setAlertMessage(data.message);
-        AnimatedAlert.showAlert();
-      } else if (data.status === 204) {
-        setopenLink(data.data?.accountLink);
-        console.log('🚀 ~ WithdrawalFun ~ data.data?.message:', data.message);
-        setPopupMsg(data.message);
-        setIsLoading(false);
-        openModal();
-      } else if (data.status === 401) {
-        setIsLoading(false);
-        // setAlertMessage(data.message);
-        // AnimatedAlert.showAlert()
+      } else {
+        setIsLoading(true);
+        const {data} = await apiCall(
+          'POST',
+          ENDPOINTS.checkStripeAccountVerify,
+        );
+        console.log('🚀 ~ WithdrawalFun ~ data:', data);
+        if (data.status === 200) {
+          // navigation.navigate('WithdrawScreen', userWalletDetails);
+          navigation.navigate('WithdrawScreen', {
+            WalletDetails: userWalletDetails,
+            onPressCross: onPressCross,
+            userWalletDetailsfun: _UserWalletDetails,
+          });
+          console.log('====================================');
+          console.log(userWalletDetails);
+          console.log('====================================');
+          setIsLoading(false);
+        } else if (data.status === 201) {
+          // setvisible(true);
+          setIsLoading(false);
+          setAlertMessage(data.message);
+          AnimatedAlert.showAlert();
+        } else if (data.status === 202) {
+          setIsLoading(false);
+          openModal();
+          // setAlertMessage(data.message);
+          // AnimatedAlert.showAlert()
+        } else if (data.status === 203) {
+          setIsLoading(false);
+          setAlertMessage(data.message);
+          AnimatedAlert.showAlert();
+        } else if (data.status === 204) {
+          setopenLink(data.data?.accountLink);
+          console.log('🚀 ~ WithdrawalFun ~ data.data?.message:', data.message);
+          setPopupMsg(data.message);
+          setIsLoading(false);
+          openModal();
+        } else if (data.status === 401) {
+          setIsLoading(false);
+          // setAlertMessage(data.message);
+          // AnimatedAlert.showAlert()
+        }
       }
     } catch (error) {
       setIsLoading(false);

@@ -262,7 +262,8 @@ const UserWallet = props => {
                   alignItems: 'center',
                   width: '100%',
                 }}>
-                <View
+                <TouchableOpacity
+                  onPress={() => props.WithdrawalFun()}
                   style={{
                     backgroundColor: BLACK_COLOUR_CODE,
                     height: 50,
@@ -281,7 +282,7 @@ const UserWallet = props => {
                     }}>
                     Withdrawal
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             ) : (
               <View
