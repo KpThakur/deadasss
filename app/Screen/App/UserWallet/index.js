@@ -1,22 +1,33 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import UserWalletScreen from './component/UserWallet';
-import {Linking, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Linking,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import AnimatedAlert from '../../../Components/AnimatedAlert';
 import Loader from '../../../Utils/Loader';
 import {apiCall} from '../../../Utils/httpClient';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
-import styles from './component/styles';
+// import styles from './component/styles';
+// import Styles from '../ChallangeScreen/component/styles';
 import {
   FONT_FAMILY_REGULAR,
   GRAY_COLOR,
   RED_COLOUR_CODE,
+  YOU_ALL_COLOUR_CODE,
 } from '../../../Utils/constant';
 import Dialog, {
   DialogFooter,
   DialogButton,
   DialogContent,
 } from 'react-native-popup-dialog';
+import Styles from '../ChallangeScreen/component/styles';
 
 const UserWallet = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +37,65 @@ const UserWallet = props => {
   const [userWalletDetails, setUserWalletDetails] = useState('');
   const [historyData, setHistoryData] = useState([]);
   const navigation = useNavigation();
-  const [visible, setvisible] = useState(false);
+  const [PopupMsg, setPopupMsg] = useState('');
+  // const [visible, setvisible] = useState(false);
+
+  const AppExitModal = ({visible, onClose}) => {
+    return (
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={visible}
+        onRequestClose={() => onClose()}>
+        <View style={Styles.modalMainView}>
+          <View style={Styles.modalContainView}>
+            <Image
+              resizeMode="contain"
+              style={Styles.imgStyle}
+              source={require('../../../Assets/deadasss.png')}
+            />
+
+            <Text style={Styles.modalTextHoldStyle}>Info!</Text>
+            <Text style={[Styles.modalTextStyle, {marginTop: 15}]}>
+              {/* {openlink !== ''
+                ? 'Your Stripe Account not Verify Press Ok to Verify an Stripe Account'
+                : 'Your Stripe Account not created Press Ok to Create an Stripe Account'} */}
+              {openlink !== ''
+                ? PopupMsg
+                : 'Your Stripe Account not created Continue to Create an Stripe Account'}
+            </Text>
+
+            <View style={Styles.buttnView}>
+              <TouchableOpacity onPress={() => onClose()}>
+                <Text style={[Styles.buttnText, {color: YOU_ALL_COLOUR_CODE}]}>
+                  Close
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  onClose(),
+                    openlink !== ''
+                      ? Linking.openURL(`${openlink}`)
+                      : createStripeAccount();
+                }}>
+                <Text style={Styles.buttnText}>Continue</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -91,7 +160,6 @@ const UserWallet = props => {
       setIsLoading(true);
       const {data} = await apiCall('POST', ENDPOINTS.checkStripeAccountVerify);
       console.log('🚀 ~ WithdrawalFun ~ data:', data);
-
       if (data.status === 200) {
         // navigation.navigate('WithdrawScreen', userWalletDetails);
         navigation.navigate('WithdrawScreen', {
@@ -105,13 +173,12 @@ const UserWallet = props => {
         setIsLoading(false);
       } else if (data.status === 201) {
         // setvisible(true);
-
         setIsLoading(false);
         setAlertMessage(data.message);
         AnimatedAlert.showAlert();
       } else if (data.status === 202) {
         setIsLoading(false);
-        setvisible(true);
+        openModal();
         // setAlertMessage(data.message);
         // AnimatedAlert.showAlert()
       } else if (data.status === 203) {
@@ -120,8 +187,10 @@ const UserWallet = props => {
         AnimatedAlert.showAlert();
       } else if (data.status === 204) {
         setopenLink(data.data?.accountLink);
+        console.log('🚀 ~ WithdrawalFun ~ data.data?.message:', data.message);
+        setPopupMsg(data.message);
         setIsLoading(false);
-        setvisible(true);
+        openModal();
       } else if (data.status === 401) {
         setIsLoading(false);
         // setAlertMessage(data.message);
@@ -230,8 +299,12 @@ const UserWallet = props => {
         alertMessage={alertMessage}
         alertBGColor={RED_COLOUR_CODE}
       />
-
-      <Dialog
+      <AppExitModal
+        visible={modalVisible}
+        onClose={closeModal}
+        // onExitApp={onExitApp}
+      />
+      {/* <Dialog
         visible={visible}
         footer={
           <DialogFooter>
@@ -270,7 +343,7 @@ const UserWallet = props => {
             </View>
           </View>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </View>
   );
 };

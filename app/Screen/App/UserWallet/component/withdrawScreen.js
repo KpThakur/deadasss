@@ -25,6 +25,7 @@ import {
   FONT_FAMILY_CURSUE,
   FONT_FAMILY_SFU_REGULAR,
   RED_COLOUR_CODE,
+  YOU_ALL_COLOUR_CODE,
 } from '../../../../Utils/constant';
 import styles from '../../../App/CreateAccount/component/styles';
 import {UserContext} from '../../../../Utils/UserContext';
@@ -35,7 +36,54 @@ import Loader from '../../../../Utils/Loader';
 import {apiCall} from '../../../../Utils/httpClient';
 import apiEndPoints from '../../../../Utils/apiEndPoints';
 import {useNavigation} from '@react-navigation/native';
+import Styles from '../../ChallangeScreen/component/styles';
 const WithdrawScreen = ({route}) => {
+  const AppExitModal = ({visible, onClose}) => {
+    return (
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={visible}
+        onRequestClose={() => onClose()}>
+        <View style={Styles.modalMainView}>
+          <View style={Styles.modalContainView}>
+            <Image
+              resizeMode="contain"
+              style={Styles.imgStyle}
+              source={require('../../../../Assets/deadasss.png')}
+            />
+
+            <Text style={Styles.modalTextHoldStyle}>Info!</Text>
+            <Text style={[Styles.modalTextStyle, {marginTop: 15}]}>
+              Are you Sure you want to Transfer your Amount
+            </Text>
+
+            <View style={Styles.buttnView}>
+              <TouchableOpacity onPress={() => onClose()}>
+                <Text style={[Styles.buttnText, {color: YOU_ALL_COLOUR_CODE}]}>
+                  CANCEL
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => withdraw()}>
+                <Text style={Styles.buttnText}>CONFIRM</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const navigation = useNavigation();
   const [profileModal, setProfileModal] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
@@ -74,7 +122,8 @@ const WithdrawScreen = ({route}) => {
   const clickhandler = () => {
     if (textInputValue && textInputValue <= WalletDetails.user_wallet) {
       console.log('🚀 ~ clickhandler ~ textInputValue:', textInputValue);
-      setProfileModal(true);
+      // setProfileModal(true);
+      openModal();
     } else if (textInputValue === '') {
       setAlertMessage('Please Enter an correct Amount');
       AnimatedAlert.showAlert();
@@ -88,7 +137,8 @@ const WithdrawScreen = ({route}) => {
   // Withdraw API CALL-------------------------------------------
 
   async function withdraw() {
-    setProfileModal(false);
+    // setProfileModal(false);
+    closeModal();
     try {
       const params = {
         payment_amount: textInputValue,
@@ -279,7 +329,7 @@ const WithdrawScreen = ({route}) => {
             </View>
           </View>
         </ScrollView>
-        <Modal
+        {/* <Modal
           animationType="slide"
           hardwareAccelerated={true}
           transparent={true}
@@ -335,7 +385,8 @@ const WithdrawScreen = ({route}) => {
               </View>
             </View>
           </View>
-        </Modal>
+        </Modal> */}
+        <AppExitModal visible={modalVisible} onClose={closeModal} />
         <AnimatedAlert
           alertMessage={alertMessage}
           alertBGColor={RED_COLOUR_CODE}

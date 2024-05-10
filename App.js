@@ -45,7 +45,7 @@ const App = () => {
 
     requestUserPermission();
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      console.log("Foreground message received:", remoteMessage);
+      console.log('Foreground message received:', remoteMessage);
       remoteMessage.data.room_id
         ? navigationService(remoteMessage)
         : console.log(remoteMessage.notification.title);
