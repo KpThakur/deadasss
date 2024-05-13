@@ -255,22 +255,14 @@ function Route(props) {
   //       }, 3000);
   // },[])
 
-  const config = {
-    screens: {
-      ChallengeCode: {
-        screen: ChallengeCodeScreen,
-        linking: {
-          path: 'ChallengeCode',
-        },
-      },
-    },
-  };
+ 
 
   const linking = {
     // prefixes: ['http://68.183.93.52/deadasss/', 'deadasss://'],
     // prefixes: ['https://deadasss.com:3000/', 'deadasss://'],
-    prefixes: ['https://deadasss.page.link', 'deadasss://'],
-    // config,
+   // prefixes: ['https://deadasss.page.link', 'deadasss://'],
+   // prefixes: ['https://itinformatix.org/deadasss', 'deadasss://'],
+    prefixes: ['http://192.168.1.21/deadasss', 'deadasss://'],
   };
 
   useEffect(() => {
@@ -285,13 +277,16 @@ function Route(props) {
     if (initialUrl === null) {
       return;
     }
+    console.log('initialUrl:======= ', initialUrl);
     if (initialUrl.includes('PayNowScreen')) {
       const route = initialUrl.replace(/.*?:\/\//g, '');
       const routeName = route.split('/')[1];
+      console.log('routeName PayNowScreen:======= ', routeName);
       onPressContinue(routeName);
     } else if (initialUrl.includes('UserWallet')) {
       const route = initialUrl.replace(/.*?:\/\//g, '');
       const routeName = route.split('/')[1];
+      console.log('routeName UserWallet:======= ', routeName);
       onPaymentComplete(routeName);
     }
   };
@@ -345,6 +340,7 @@ function Route(props) {
   }
 
   async function onPressContinue(Code) {
+  console.log('Code: -------------------', Code);
     try {
       const params = {
         challenge_code: Code,
@@ -353,7 +349,8 @@ function Route(props) {
         'POST',
         ENDPOINTS.CHALLENGE_CODE_VERIFY,
         params,
-      );
+        );
+        console.log('data: ', data);
       if (data.status === 200) {
         navigationRef.current.navigate('PayNowScreen', {data: data.data});
       } else if (data.status === 201) {
@@ -366,6 +363,7 @@ function Route(props) {
         AnimatedAlert.showAlert();
       }
     } catch (error) {
+    console.log('error: ', error);
       setAlertMessage(error.toString());
       AnimatedAlert.showAlert();
       // setIsLoading(false)

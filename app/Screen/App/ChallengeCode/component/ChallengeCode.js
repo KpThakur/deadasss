@@ -21,11 +21,11 @@ import {
 import Button from '../../../../Components/Button';
 import OTPTextView from '../../../../Components/OtpVerification';
 const ChallengeCodeScreen = props => {
-  useEffect(() => {
-    if (props.Code) {
-      props.otpRef.current?.setValue(props.Code);
-    }
-  }, [props.Code]);
+  // useEffect(() => {
+  //   if (props.Code) {
+  //     props.otpRef.current?.setValue(props.Code);
+  //   }
+  // }, [props.Code]);
 
   return (
     <View style={styles.container}>
@@ -61,8 +61,8 @@ const ChallengeCodeScreen = props => {
           {/* <Text style={[styles.VerifyDescrptn, { bottom: 20 }]}>received on {props.Email}</Text> */}
         </View>
         <OTPTextView
-          ref={props.otpRef}
-          handleTextChange={val => props.handleOtp(val)}
+         // ref={props.otpRef}
+          handleTextChange={(val) => props.handleOtp(val)}
           //  handleTextChange={(val) => console.log("OTP Value:", val)}
           tintColor={COMMON_BLUE_COLOUR}
           containerStyle={{

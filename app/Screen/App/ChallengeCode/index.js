@@ -92,8 +92,9 @@ const ChallengeCode = ({route}) => {
         setIsLoading(false);
       }
     } catch (error) {
-      setAlertMessage(error.toString());
-      AnimatedAlert.showAlert();
+      console.log("error in catch bid list", error)
+      // setAlertMessage(error.toString());
+      // AnimatedAlert.showAlert();
       setIsLoading(false);
     }
   }
