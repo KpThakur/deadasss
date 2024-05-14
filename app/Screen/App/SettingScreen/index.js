@@ -55,7 +55,7 @@ const SettingScreenView = () => {
             />
 
             <Text style={[Styles.modalTextHoldStyle, {marginTop: 15}]}>
-              ! Log out confirmation
+              ! Confirmation
             </Text>
 
             <Text

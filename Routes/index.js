@@ -255,7 +255,7 @@ function Route(props) {
   //       }, 3000);
   // },[])
 
- 
+
 
   const linking = {
     // prefixes: ['http://68.183.93.52/deadasss/', 'deadasss://'],
@@ -263,13 +263,16 @@ function Route(props) {
    // prefixes: ['https://deadasss.page.link', 'deadasss://'],
    // prefixes: ['https://itinformatix.org/deadasss', 'deadasss://'],
     prefixes: ['http://192.168.1.21/deadasss', 'deadasss://'],
+    
   };
 
   useEffect(() => {
-    setTimeout(() => {
+
+    getUrl();
+   /*  setTimeout(() => {
       getUrl();
       // CheckCallStatus()
-    }, 4000);
+    }, 4000); */
   });
 
   const getUrl = async () => {
@@ -321,16 +324,17 @@ function Route(props) {
   async function onPaymentComplete(Code) {
     try {
       const {data} = await apiCall('POST', ENDPOINTS.checkStripeAccountVerify);
+      console.log('data in onPaymentComplete: ', data);
       if (data.status === 200) {
         navigationRef.current.navigate('UserWallet');
       } else if (data.status === 201) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       } else if (data.status === 202) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       } else if (data.status === 401) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       }
     } catch (error) {
@@ -354,12 +358,13 @@ function Route(props) {
       if (data.status === 200) {
         navigationRef.current.navigate('PayNowScreen', {data: data.data});
       } else if (data.status === 201) {
-        setAlertMessage(data.message);
+        console.log('data.status: ', data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       } else if (data.status === 202) {
         navigationRef.current.navigate('VideoCallStart', {data: data.data});
       } else if (data.status === 401) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       }
     } catch (error) {
