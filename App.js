@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Routes from './Routes';
-import {PermissionsAndroid, Platform, View, Alert} from 'react-native';
+import {PermissionsAndroid, Platform, View, Alert, LogBox} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage';
 import {UserProvider} from './app/Utils/UserContext';
@@ -14,6 +14,9 @@ import ENDPOINTS from '././app/Utils/apiEndPoints';
 // });
 
 const App = () => {
+  
+  LogBox.ignoreAllLogs();
+
   async function navigationService(remoteMessage) {
     RootNavigation.navigate('VocieCall', {remoteMessage: remoteMessage});
     console.log('find remoteMessage message>>>>', remoteMessage);

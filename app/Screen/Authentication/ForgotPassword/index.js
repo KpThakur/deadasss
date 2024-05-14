@@ -73,7 +73,7 @@ const ForgotPassword = () => {
       <ForgotPasswordScreen
         onPressCode={onPressCode}
         onPressLoginHere={onPressLoginHere}
-        Email={Email}
+        Email={Email.trim()}
         setEmail={setEmail}
       />
       <AnimatedAlert

@@ -116,7 +116,7 @@ const ChallengeCodeScreen = props => {
               // keyExtractor={(item, index) => index.toString()}
               data={props.listBid?.data}
              // data={props.data}
-              showsVerticalScrollIndicator={true}
+              showsVerticalScrollIndicator={false}
               ListEmptyComponent={() => (
                 <View style={{alignItems: 'center', paddingTop: 40}}>
                   <Text

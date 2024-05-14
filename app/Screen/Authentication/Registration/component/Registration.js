@@ -216,7 +216,7 @@ const RegistrationScreen = props => {
               }}>
               {CountryCode
                 ? FlagSelected + ' ' + CountryCode + '  ' + CountrySelected
-                : 'Select country (Optional)'}
+                : 'Select country'}
             </Text>
           </TouchableOpacity>
           <Input

@@ -23,6 +23,10 @@ const ChangePassword = ({ navigation }) => {
             AnimatedAlert.showAlert()
             setAlertMessage('Please enter your confirm password');
             return false;
+        }if (parameters.ConfirmPassword !== parameters.NewPassword) {
+            AnimatedAlert.showAlert()
+            setAlertMessage("Confirm password and password doesn't match ")
+            return false;
         }
         return true;
     };
