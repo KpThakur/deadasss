@@ -255,21 +255,17 @@ function Route(props) {
   //       }, 3000);
   // },[])
 
-
-
   const linking = {
     // prefixes: ['http://68.183.93.52/deadasss/', 'deadasss://'],
     // prefixes: ['https://deadasss.com:3000/', 'deadasss://'],
-   // prefixes: ['https://deadasss.page.link', 'deadasss://'],
-   // prefixes: ['https://itinformatix.org/deadasss', 'deadasss://'],
+    // prefixes: ['https://deadasss.page.link', 'deadasss://'],
+    // prefixes: ['https://itinformatix.org/deadasss', 'deadasss://'],
     prefixes: ['http://192.168.1.21/deadasss', 'deadasss://'],
-    
   };
 
   useEffect(() => {
-
     getUrl();
-   /*  setTimeout(() => {
+    /*  setTimeout(() => {
       getUrl();
       // CheckCallStatus()
     }, 4000); */
@@ -292,6 +288,13 @@ function Route(props) {
       console.log('routeName UserWallet:======= ', routeName);
       onPaymentComplete(routeName);
     }
+  };
+
+  const navigate = data => {
+    setTimeout(() => {
+      navigationRef.current.navigate('PayNowScreen', {data: data.data});
+      console.log("++=====>>>>>>>>>>>>>",data.data);
+    }, 1000);
   };
 
   const stripeKeyDynamic = async () => {
@@ -344,7 +347,7 @@ function Route(props) {
   }
 
   async function onPressContinue(Code) {
-  console.log('Code: -------------------', Code);
+    console.log('Code: -------------------', Code);
     try {
       const params = {
         challenge_code: Code,
@@ -353,10 +356,11 @@ function Route(props) {
         'POST',
         ENDPOINTS.CHALLENGE_CODE_VERIFY,
         params,
-        );
-        console.log('data: ', data);
+      );
+      console.log('data: ', data);
       if (data.status === 200) {
-        navigationRef.current.navigate('PayNowScreen', {data: data.data});
+        navigate(data);
+        // navigationRef.current.navigate('PayNowScreen', {data: data.data});
       } else if (data.status === 201) {
         console.log('data.status: ', data.message);
         setAlertMessage(data?.message);
@@ -368,7 +372,7 @@ function Route(props) {
         AnimatedAlert.showAlert();
       }
     } catch (error) {
-    console.log('error: ', error);
+      console.log('error: ', error);
       setAlertMessage(error.toString());
       AnimatedAlert.showAlert();
       // setIsLoading(false)
