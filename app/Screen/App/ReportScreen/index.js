@@ -14,15 +14,16 @@ const ReportScreenView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [alertSuccessMessage, setAlertSuccessMessage] = useState('');
   const [userData, setUserData] = useContext(UserContext);
-  const [RatingComment, setRatingComment] = useState(2);
+ // const [RatingComment, setRatingComment] = useState(2);
+  const [RatingComment, setRatingComment] = useState('');
   const navigation = useNavigation();
 
- // console.log("check Reprot message", RatingComment);
+  console.log("check Reprot message", RatingComment);
 
   const validation = () => {
     if (RatingComment === '') {
-      AnimatedAlert.showAlert();
       setAlertMessage('Please provide a description for the report.');
+      AnimatedAlert.showAlert();
       return false;
     }
     return true;
@@ -44,6 +45,7 @@ const ReportScreenView = () => {
               AnimatedAlertSuccess.showAlert();
               setIsLoading(false);
               _handleNavigation();
+              setRatingComment('');
             } else if (data.status === 201) {
               setAlertMessage(data.message);
               AnimatedAlert.showAlert();
@@ -66,7 +68,7 @@ const ReportScreenView = () => {
   function _handleNavigation() {
     setTimeout(() => {
       navigation.navigate('ChallangeScreen');
-    }, 4000);
+    }, 1500);
   }
   return (
     <View style={{flex: 1}}>
