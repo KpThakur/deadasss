@@ -54,12 +54,12 @@ import UserWalletScreen from '../app/Screen/App/UserWallet';
 import WebViewScreen from '../app/Screen/App/WebView';
 import VideoPlayScreen from '../app/Screen/App/VideoPlay';
 import PaymentReturnScreen from '../app/Screen/App/PaymentReturn';
-import dynamicLinks from '@react-native-firebase/dynamic-links';
-
 // import * as RootNavigation from "../RootNavigation";
 
 import stripe from 'tipsi-stripe';
 import {useFocusEffect} from '@react-navigation/native';
+import WithdrawScreen from '../app/Screen/App/UserWallet/component/withdrawScreen';
+import SucessScreen from '../app/Screen/App/UserWallet/component/sucessScreen';
 import ChallengeCode from '../app/Screen/App/ChallengeCode';
 
 const Stack = createStackNavigator();
@@ -127,9 +127,11 @@ function AppStack() {
       <Stack.Screen name="VocieCall" component={VocieCallScreen} />
       <Stack.Screen name="UserWallet" component={UserWalletScreen} />
       <Stack.Screen name="PaymentReturn" component={PaymentReturnScreen} />
-
+      <Stack.Screen name="WithdrawScreen" component={WithdrawScreen} />
       <Stack.Screen name="WebView" component={WebViewScreen} />
       <Stack.Screen name="VideoPlay" component={VideoPlayScreen} />
+      <Stack.Screen name="successScreen" component={SucessScreen} />
+
       <Stack.Screen
         name="TermAndCondition"
         component={TermAndConditionScreen}
@@ -216,9 +218,6 @@ function AuthLoading() {
       dispatch({type: 'RETRIEVE_TOKEN', token: userToken});
     }, 3000);
   }, []);
-
-  
-
   if (loginState.isLoading) {
     return (
       <View style={styles.ViewContainer}>
@@ -257,30 +256,23 @@ function Route(props) {
   // },[])
 
 
-  
-  const config = {
-    screens: {
-      ChallengeCode: {
-        screen: ChallengeCodeScreen,
-        linking: {
-          path: 'ChallengeCode',
-        },
-      },
-  }
-}
 
   const linking = {
     // prefixes: ['http://68.183.93.52/deadasss/', 'deadasss://'],
     // prefixes: ['https://deadasss.com:3000/', 'deadasss://'],
-    prefixes: ['https://deadasss.page.link', 'deadasss://'],
-   // config,
+   // prefixes: ['https://deadasss.page.link', 'deadasss://'],
+   // prefixes: ['https://itinformatix.org/deadasss', 'deadasss://'],
+    prefixes: ['http://192.168.1.21/deadasss', 'deadasss://'],
+    
   };
 
   useEffect(() => {
-    setTimeout(() => {
+
+    getUrl();
+   /*  setTimeout(() => {
       getUrl();
       // CheckCallStatus()
-    }, 4000);
+    }, 4000); */
   });
 
   const getUrl = async () => {
@@ -288,13 +280,16 @@ function Route(props) {
     if (initialUrl === null) {
       return;
     }
+    console.log('initialUrl:======= ', initialUrl);
     if (initialUrl.includes('PayNowScreen')) {
       const route = initialUrl.replace(/.*?:\/\//g, '');
       const routeName = route.split('/')[1];
+      console.log('routeName PayNowScreen:======= ', routeName);
       onPressContinue(routeName);
     } else if (initialUrl.includes('UserWallet')) {
       const route = initialUrl.replace(/.*?:\/\//g, '');
       const routeName = route.split('/')[1];
+      console.log('routeName UserWallet:======= ', routeName);
       onPaymentComplete(routeName);
     }
   };
@@ -329,16 +324,17 @@ function Route(props) {
   async function onPaymentComplete(Code) {
     try {
       const {data} = await apiCall('POST', ENDPOINTS.checkStripeAccountVerify);
+      console.log('data in onPaymentComplete: ', data);
       if (data.status === 200) {
         navigationRef.current.navigate('UserWallet');
       } else if (data.status === 201) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       } else if (data.status === 202) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       } else if (data.status === 401) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       }
     } catch (error) {
@@ -348,6 +344,7 @@ function Route(props) {
   }
 
   async function onPressContinue(Code) {
+  console.log('Code: -------------------', Code);
     try {
       const params = {
         challenge_code: Code,
@@ -356,19 +353,22 @@ function Route(props) {
         'POST',
         ENDPOINTS.CHALLENGE_CODE_VERIFY,
         params,
-      );
+        );
+        console.log('data: ', data);
       if (data.status === 200) {
         navigationRef.current.navigate('PayNowScreen', {data: data.data});
       } else if (data.status === 201) {
-        setAlertMessage(data.message);
+        console.log('data.status: ', data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       } else if (data.status === 202) {
         navigationRef.current.navigate('VideoCallStart', {data: data.data});
       } else if (data.status === 401) {
-        setAlertMessage(data.message);
+        setAlertMessage(data?.message);
         AnimatedAlert.showAlert();
       }
     } catch (error) {
+    console.log('error: ', error);
       setAlertMessage(error.toString());
       AnimatedAlert.showAlert();
       // setIsLoading(false)

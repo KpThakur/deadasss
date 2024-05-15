@@ -19,20 +19,20 @@ const RatingScreenView = () => {
   const [defaultRating, setDefaultRating] = useState(userData.avg_app_rating);
   const navigation = useNavigation();
 
-  // console.log('find rating', defaultRating);
+  console.log('find rating', defaultRating);
 
-  //   function validationFrom() {
-  //     if (!defaultRating) {
-  //       AnimatedAlert.showAlert();
-  //       setAlertMessage('Please select a rating before submitting');
-  //       return false;
-  //     }
-  //     return true;
-  //   }
+    function validationFrom() {
+      if (!defaultRating) {
+        AnimatedAlert.showAlert();
+        setAlertMessage('Please select a rating before submitting');
+        return false;
+      }
+      return true;
+    }
 
   async function onPressCreateRating() {
-    // const valid = validationFrom();
-    // if (valid) {
+    const valid = validationFrom();
+    if (valid) {
     try {
       setIsLoading(true);
       const params = {
@@ -41,7 +41,10 @@ const RatingScreenView = () => {
         rating_to: 2,
       };
       const {data} = await apiCall('POST', ENDPOINTS.CREATE_RATING, params);
+      console.log('data in response..??: ', data);
       if (data.status === 200) {
+        console.log('data in response 200??..??: ', data);
+
         setIsLoading(false);
         setAlertSuccessMessage(data.message);
         AnimatedAlertSuccess.showAlert();
@@ -61,13 +64,13 @@ const RatingScreenView = () => {
       AnimatedAlert.showAlert();
       setIsLoading(false);
     }
-    // }
+    }
   }
   function _handleNavigation() {
-    navigation.navigate('ChallangeScreen');
-    // setTimeout(() => {
-    //     navigation.navigate("ChallangeScreen")
-    // },2000);
+   // navigation.navigate('ChallangeScreen');
+    setTimeout(() => {
+        navigation.navigate("ChallangeScreen")
+    },1500);
   }
   function onPressCross() {
     navigation.goBack(null);

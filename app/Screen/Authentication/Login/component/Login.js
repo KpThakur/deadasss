@@ -41,7 +41,7 @@ const LoginScreen = props => {
         <View style={{flex: 4, paddingTop: 25}}>
           <Input
             onChangeText={Email => setEmail(Email)}
-            value={Email}
+            value={Email.trim()}
             placeholder="Email"
             autoCapitalize={'none'}
             secureTextEntry={false}
