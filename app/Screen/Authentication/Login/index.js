@@ -16,6 +16,7 @@ import ENDPOINTS from '../../../Utils/apiEndPoints';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {AuthContext} from '../../../Components/AuthContext';
 import styles from './component/styles';
+import messaging from '@react-native-firebase/messaging';
 
 import Error from '../../../Components/modal/error';
 const Login = () => {
@@ -51,68 +52,77 @@ const Login = () => {
     return true;
   }
   async function _handleLogin(parameters) {
-    const deviceToken = await AsyncStorage.getItem('fcmToken');
-    let deviceId = DeviceInfo.getDeviceId();
-    let deviceType = DeviceInfo.getDeviceType();
+    // const deviceToken = await AsyncStorage.getItem('fcmToken');
+
     const valid = await validationForm(parameters);
     if (valid) {
       try {
         setIsLoading(true);
-        const params = {
-          username: parameters.Email,
-          password: parameters.Password,
-          device_type: deviceType,
-          device_id: deviceId,
-          device_token: deviceToken,
-        };
-        const {data} = await apiCall('POST', ENDPOINTS.USER_SIGN_IN, params);
-        console.log('find fcm token in params', params);
-        console.log('data: ', data);
-        if (data.status === 200) {
-          if (data.data.status === 1) {
-            if (data.data.verify_status === 1) {
-              if (data.data.receive_payment_status === 1) {
-                setUserData(data.data);
-                setDefaultHeader('authorization', data.token);
-                setIsLoading(false);
-                signIn(data.token);
+        const deviceToken = await messaging().getToken();
+        console.log('deviceToken: ', deviceToken);
+        if (deviceToken !== null) {
+          let deviceId = DeviceInfo.getDeviceId();
+          let deviceType = DeviceInfo.getDeviceType();
+          const params = {
+            username: parameters.Email,
+            password: parameters.Password,
+            device_type: deviceType,
+            device_id: deviceId,
+            device_token: deviceToken,
+          };
+          const {data} = await apiCall('POST', ENDPOINTS.USER_SIGN_IN, params);
+          console.log('find fcm token in params', params);
+          console.log('data: ', data);
+          if (data.status === 200) {
+            if (data.data.status === 1) {
+              if (data.data.verify_status === 1) {
+                if (data.data.receive_payment_status === 1) {
+                  setUserData(data.data);
+                  setDefaultHeader('authorization', data.token);
+                  setIsLoading(false);
+                  signIn(data.token);
+                } else {
+                  setUserData(data.data);
+                  setDefaultHeader('authorization', data.token);
+                  setIsLoading(false);
+                  signIn(data.token);
+                  // navigation.navigate("PaymentDetails", { token: data.token })
+                }
               } else {
                 setUserData(data.data);
                 setDefaultHeader('authorization', data.token);
                 setIsLoading(false);
-                signIn(data.token);
-                // navigation.navigate("PaymentDetails", { token: data.token })
+                navigation.navigate('UserVerification', {
+                  Email: parameters.Email,
+                  token: data.token,
+                });
+                // await auth().signInWithPhoneNumber(data.data.country_code + data.data.mobileno)
+                //     .then(confirmResult => {
+                //         setUserData(data.data)
+                //         setDefaultHeader('authorization', data.token);
+                //         setIsLoading(false)
+                //         navigation.navigate("UserVerification", { confirmResult: confirmResult, data: data, token: data.token })
+                //     })
               }
             } else {
-              setUserData(data.data);
-              setDefaultHeader('authorization', data.token);
               setIsLoading(false);
-              navigation.navigate('UserVerification', {
-                Email: parameters.Email,
-                token: data.token,
-              });
-              // await auth().signInWithPhoneNumber(data.data.country_code + data.data.mobileno)
-              //     .then(confirmResult => {
-              //         setUserData(data.data)
-              //         setDefaultHeader('authorization', data.token);
-              //         setIsLoading(false)
-              //         navigation.navigate("UserVerification", { confirmResult: confirmResult, data: data, token: data.token })
-              //     })
+              _handlePopUp();
             }
-          } else {
+          } else if (data.status === 201) {
+            setVisibleErr(true);
+            setErrorMessage(data.message);
+            // AnimatedAlert.showAlert()
             setIsLoading(false);
-            _handlePopUp();
+          } else if (data.status === 401) {
+            setIsLoading(false);
+            setVisibleErr(true);
+            setErrorMessage(data.message);
+            // AnimatedAlert.showAlert()
           }
-        } else if (data.status === 201) {
-          setVisibleErr(true);
-          setErrorMessage(data.message);
-          // AnimatedAlert.showAlert()
-          setIsLoading(false);
-        } else if (data.status === 401) {
+        } else {
           setIsLoading(false);
           setVisibleErr(true);
-          setErrorMessage(data.message);
-          // AnimatedAlert.showAlert()
+          setErrorMessage('Your device token not found please restart the app');
         }
       } catch (error) {
         // AnimatedAlert.showAlert()

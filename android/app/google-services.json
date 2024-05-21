@@ -1,26 +1,67 @@
 {
   "project_info": {
-    "project_number": "1015088419632",
-    "project_id": "deadasss-599fd",
-    "storage_bucket": "deadasss-599fd.appspot.com"
+    "project_number": "960207045268",
+    "project_id": "deadasss-5dc60",
+    "storage_bucket": "deadasss-5dc60.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1015088419632:android:375a129f1c668f917daef5",
+        "mobilesdk_app_id": "1:960207045268:android:c7a1ae8b0b60641bda6a81",
         "android_client_info": {
           "package_name": "com.deadasss"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "960207045268-de0h128omoao3e2kpu3gttsf0mr7lpik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deadasss",
+            "certificate_hash": "163e221dea7ae665c1dbe77ddffa5d703fa73144"
+          }
+        },
+        {
+          "client_id": "960207045268-itqd5bb40mii7r04i5h64u9htlphqe87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deadasss",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "960207045268-um3o3tm3cpdoq3srcdabbvjsppd7ngb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deadasss",
+            "certificate_hash": "c6214ceb3fc74da39145a5424e3a60106e7665a8"
+          }
+        },
+        {
+          "client_id": "960207045268-vknvv88ec9m4vj2o9aefr6fvhk3r8bur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyC_yezvqkrypqr7pvKgG8PgkIhN9y64VjU"
+          "current_key": "AIzaSyA4AAP8KxO-0h9p_0LORPClPhCINRiMQGI"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960207045268-vknvv88ec9m4vj2o9aefr6fvhk3r8bur.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "960207045268-fmg5a82e529gaejblvogf4dpbfcbifsa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.deadasss"
+              }
+            }
+          ]
         }
       }
     }

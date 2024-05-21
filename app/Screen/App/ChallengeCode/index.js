@@ -21,7 +21,7 @@ const ChallengeCode = ({route}) => {
   const [alertSuccessMessage, setAlertSuccessMessage] = useState('');
   const [listBid, setListBid] = useState([]);
 
-  console.log("find bid data ???...", listBid)
+  console.log('find bid data ???...', listBid);
   const [ItemData, setItemData] = useState('');
   const [ConfirmMinutes, setConfirmMinutes] = useState('');
   const otpRef = useRef(null);
@@ -49,11 +49,8 @@ const ChallengeCode = ({route}) => {
       return () => {
         _handleList();
       };
-      
     }, []),
   );
-
- 
 
   const [data, setData] = useState([
     {
@@ -92,7 +89,7 @@ const ChallengeCode = ({route}) => {
         setIsLoading(false);
       }
     } catch (error) {
-      console.log("error in catch bid list", error)
+      console.log('error in catch bid list', error);
       // setAlertMessage(error.toString());
       // AnimatedAlert.showAlert();
       setIsLoading(false);
@@ -114,13 +111,35 @@ const ChallengeCode = ({route}) => {
         <View style={{flex: 4.9, flexDirection: 'row'}}>
           {/* <Image style={{ width: 70, height: 70, borderRadius: 80 }} source={require('../../../Assets/image.png')} /> */}
           <Image
-            style={{width: 60, height: 60, borderRadius: 80,}}
+            style={{width: 60, height: 60, borderRadius: 80}}
             source={{uri: item.profile_pic}}
           />
           <View style={{paddingLeft: 10, justifyContent: 'center'}}>
-            <Text style={{fontFamily: FONT_FAMILY_TYPE_WRITER, fontSize: 20}}>
+            {/* <Text style={{fontFamily: FONT_FAMILY_TYPE_WRITER, fontSize: 20}}>
               {item.first_name + ' ' + item.last_name}
-            </Text>
+            </Text> */}
+            <View
+              style={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                rowGap: -20,
+                width: '95%',
+              }}>
+              <Text
+                style={{
+                  fontFamily: FONT_FAMILY_TYPE_WRITER,
+                  fontSize: 20,
+                }}>
+                {item.first_name + ' '}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: FONT_FAMILY_TYPE_WRITER,
+                  fontSize: 20,
+                }}>
+                {item.last_name}
+              </Text>
+            </View>
             <Text
               style={{
                 fontFamily: FONT_FAMILY_TYPE_WRITER,
@@ -173,31 +192,27 @@ const ChallengeCode = ({route}) => {
           </View>
         </View>
         <View style={{flex: 0.9, alignItems: 'center', marginTop: 20}}>
-        <TouchableOpacity onPress={() => onPressVideoCall(item)}>
-              <Image
-                source={require('../../../Assets/phone_call.png')}
-                resizeMode="center"
-                style={{height: 30, width: 30}}
-              />
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => onPressVideoCall(item)}>
+            <Image
+              source={require('../../../Assets/phone_call.png')}
+              resizeMode="center"
+              style={{height: 30, width: 30}}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     );
   };
 
-
-  
   async function onPressVideoCall(item) {
-   
     setIsLoading(true);
     try {
       const params = {
-       "challenge_id": item.challenge_id,
-        "pay_to_id": item.pay_to_user_id,
-        
+        challenge_id: item.challenge_id,
+        pay_to_id: item.pay_to_user_id,
       };
       const {data} = await apiCall('POST', ENDPOINTS.CHECK_BUSY_CALL, params);
-      console.log("find response ???", data)
+      console.log('find response ???', data);
       if (data.status === 200) {
         setIsLoading(false);
         _handleVideoCall(item);
@@ -222,7 +237,6 @@ const ChallengeCode = ({route}) => {
   }
 
   async function _handleVideoCall(item) {
-    
     try {
       const params = {
         challenge_id: item.challenge_id,
@@ -231,7 +245,7 @@ const ChallengeCode = ({route}) => {
       };
       setIsLoading(true);
       const {data} = await apiCall('POST', ENDPOINTS.VIDEO_CALLING, params);
-      console.log("find response in VIDEO_CALLING???", data)
+      console.log('find response in VIDEO_CALLING???', data);
       if (data.status === 200) {
         setIsLoading(false);
         navigation.navigate('VideoCallScreen', {
