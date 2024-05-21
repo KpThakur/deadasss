@@ -72,6 +72,7 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+        backgroundColor:"rgba(0,0,0,0.6)"
     },
     alertBox: {
         borderRadius: 10,
