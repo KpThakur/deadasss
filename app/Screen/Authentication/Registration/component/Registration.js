@@ -222,7 +222,7 @@ const RegistrationScreen = props => {
           <Input
             onChangeText={ContactNumber => setContactNumber(ContactNumber)}
             value={ContactNumber}
-            placeholder="Contact Number (Optional)"
+            placeholder="Contact Number"
             secureTextEntry={false}
             keyboardType={'number-pad'}
             maxLength={10}

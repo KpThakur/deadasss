@@ -72,7 +72,29 @@ const TimeUpChallengeStart = ({ route }) => {
                     {/* <Image style={{ width: 70, height: 70, borderRadius: 80 }} source={require('../../../Assets/image.png')} /> */}
                     <Image style={{ width: 70, height: 70, borderRadius: 80 }} source={{ uri: item.profile_pic }} />
                     <View style={{ paddingLeft: 10, justifyContent: 'center' }}>
-                        <Text style={{ fontFamily: FONT_FAMILY_TYPE_WRITER, fontSize: 20 }}>{item.first_name + ' ' + item.last_name}</Text>
+                        {/* <Text style={{ fontFamily: FONT_FAMILY_TYPE_WRITER, fontSize: 20 }}>{item.first_name + ' ' + item.last_name}</Text> */}
+                        <View
+              style={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                rowGap: -20,
+                width: '95%',
+              }}>
+              <Text
+                style={{
+                  fontFamily: FONT_FAMILY_TYPE_WRITER,
+                  fontSize: 20,
+                }}>
+                {item.first_name + ' '}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: FONT_FAMILY_TYPE_WRITER,
+                  fontSize: 20,
+                }}>
+                {item.last_name}
+              </Text>
+            </View>
                         <Text style={{ fontFamily: FONT_FAMILY_TYPE_WRITER, bottom: 20, fontSize: 14 }}>Payment Status : Complete</Text>
                         {confirm === "00" || confirm === 0 ?
                             seconds < -1 ?

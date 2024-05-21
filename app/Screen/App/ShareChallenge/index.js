@@ -5,7 +5,6 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AnimatedAlert from '../../../Components/AnimatedAlert';
 import {RED_COLOUR_CODE} from '../../../Utils/constant';
-import dynamicLinks from '@react-native-firebase/dynamic-links';
 
 const ShareChallenge = ({route}) => {
   const {ChallengeData} = route.params;
@@ -34,28 +33,28 @@ const ShareChallenge = ({route}) => {
     setChallengeData(challenge_data);
   }
 
-  useEffect(() => {
-    buildLink();
-  }, []);
+  // useEffect(() => {
+  //   buildLink();
+  // }, []);
 
-  const buildLink = async () => {
-    const ChallengeCode = ChallengeData?.challenge_code;
-    const link = await dynamicLinks().buildLink({
-      link: 'https://invertase.io',
+  // const buildLink = async () => {
+  //   const ChallengeCode = ChallengeData?.challenge_code;
+  //   const link = await dynamicLinks().buildLink({
+  //     link: 'https://invertase.io',
 
-      // link: `https://invertase.io?code=${encodeURIComponent(challengeCode)}`,
+  //     // link: `https://invertase.io?code=${encodeURIComponent(challengeCode)}`,
 
-      domainUriPrefix: 'https://deadasss.page.link/YaCK',
+  //     domainUriPrefix: 'https://deadasss.page.link/YaCK',
       
-      analytics: {
-        source: ChallengeCode,
-      },
-    });
+  //     analytics: {
+  //       source: ChallengeCode,
+  //     },
+  //   });
 
     
 
-    setGenratedLink(link);
-  };
+  //   setGenratedLink(link);
+  // };
 
   return (
     <View style={{flex: 1}}>

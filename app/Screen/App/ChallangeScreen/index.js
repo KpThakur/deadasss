@@ -9,7 +9,6 @@ import {apiCall} from '../../../Utils/httpClient';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
 import {RED_COLOUR_CODE} from '../../../Utils/constant';
 import moment from 'moment';
-import dynamicLinks from '@react-native-firebase/dynamic-links';
 
 const ChallangeScreenView = () => {
   const navigation = useNavigation();

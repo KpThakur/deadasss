@@ -109,7 +109,7 @@ const ManageProfile = props => {
             <Image
               onLoadStart={() => props.onLoadProfileStart()}
               onLoadEnd={() => props.onLoadProfileEnd()}
-              // source={{ uri: CameraImage }}
+             // source={{ uri: CameraImage }}
               source={{uri: `${CameraImage}`}}
               style={{width: 110, height: 110, borderRadius: 55}}
             />
