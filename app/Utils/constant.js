@@ -32,8 +32,8 @@ export const MAP_KEY = 'AIzaSyDdLk5tb75SiJvRk9F2B4almu-sBAi1-EM';
 
 //BASE_URL
 // export const BASEURL = 'http://192.168.1.79:3013';
-// export const BASEURL = 'http://192.168.1.21:3013';
-export const BASEURL = 'http://208.87.132.237:3013';
+export const BASEURL = 'http://192.168.1.21:3013';
+// export const BASEURL = 'http://208.87.132.237:3013';
 // export const BASEURL = 'http://192.168.1.170:3000';
 // export const BASEURL = 'http://itinformatix.org:3013';
 // export const BASEURL = 'https://deadasss.com:3000';

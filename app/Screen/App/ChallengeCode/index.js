@@ -77,7 +77,7 @@ const ChallengeCode = ({route}) => {
       console.log('find payment for bid in responce....????...', data);
       if (data.status === 200) {
         setIsLoading(false);
-        setListBid(data);
+       // setListBid(data);
         console.log('find payment for bid in responce 200....????...', data);
       } else if (data.status === 201) {
         // setAlertMessage(data.message);
