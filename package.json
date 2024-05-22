@@ -37,6 +37,7 @@
     "react-native-image-crop-picker": "^0.35.3",
     "react-native-keep-awake": "^4.0.0",
     "react-native-media-controls": "^2.3.0",
+    "react-native-notification-sounds": "^0.5.8",
     "react-native-popup-dialog": "^0.18.3",
     "react-native-pose": "^0.9.1",
     "react-native-reanimated": "3.4.1",

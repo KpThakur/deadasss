@@ -9,7 +9,10 @@ import AnimatedAlert from '../../../Components/AnimatedAlert';
 import {apiCall} from '../../../Utils/httpClient';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
 import {RED_COLOUR_CODE} from '../../../Utils/constant';
-
+import NotificationSounds, {
+  playSampleSound,
+  stopSampleSound,
+} from 'react-native-notification-sounds';
 
 let isInitialized = false;
 
@@ -35,6 +38,8 @@ const VocieCall = ({navigation, route}) => {
 
   useFocusEffect(
     React.useCallback(() => {
+      console.log("here is navigate in voice call")
+     stopSampleSound();
         async function initAndPlay() {
             await initializePlayer();  
             togglePlay();
@@ -124,6 +129,7 @@ const VocieCall = ({navigation, route}) => {
         room_id: remoteMessage?.data?.room_id,
         pay_to_id: remoteMessage?.data?.pay_to_id,
       };
+      console.log("find room id in _handleCallStatus in voiceScreen" , params)
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
       if (data.status === 200) {
         if (data.data.call_status === 3) {
@@ -152,6 +158,7 @@ const VocieCall = ({navigation, route}) => {
         challenge_id: remoteMessage?.data?.challenge_id,
         call_status: 2,
       };
+      console.log("find room id in onPressAccept in voiceScreen" , params)
       const {data} = await apiCall(
         'POST',
         ENDPOINTS.VIDEO_CALLING_STATUS,
