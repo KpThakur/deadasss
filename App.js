@@ -88,9 +88,10 @@ const App = () => {
           const sound = {
             soundID: '35',
             url: 'content://media/internal/audio/media/35',
+            //url: require('./app/skype-23266.mp3'),
             title: 'Dynamic',
           };
-          playSampleSound(sound);
+          playSampleSound(soundsList[0]);
         });
         // setTimeout(() => {
         //   stopSampleSound();
@@ -102,6 +103,22 @@ const App = () => {
         ? navigationService(remoteMessage)
         : console.log(remoteMessage.notification.title);
     });
+
+    messaging().getInitialNotification().then(async remoteMessage => {
+        console.log('Message handled in the kill state!', remoteMessage);
+        // if (remoteMessage?.data?.room_id) {
+        //   NotificationSounds.getNotifications('ringtone').then(soundsList => {
+        //     playSampleSound(soundsList[0]);
+        //   });
+        // }
+        global.notification = remoteMessage;
+        remoteMessage.data.room_id
+          ? navigationService(remoteMessage)
+          : console.log(remoteMessage.notification.title);
+      
+    });
+    
+   
 
     return () => {
       unsubscribe;
