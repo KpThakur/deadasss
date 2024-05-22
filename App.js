@@ -1,6 +1,17 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Routes from './Routes';
-import {PermissionsAndroid, Platform, View, Alert, LogBox} from 'react-native';
+import {
+  PermissionsAndroid,
+  Platform,
+  View,
+  Alert,
+  LogBox,
+  StyleSheet,
+  ScrollView,
+  Text,
+  TextInput,
+  Button,
+} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage';
 import {UserProvider} from './app/Utils/UserContext';
@@ -13,9 +24,16 @@ import ENDPOINTS from '././app/Utils/apiEndPoints';
 //   androidPayMode: 'test', // Android only
 // });
 
+import NotificationSounds, {
+  playSampleSound,
+  stopSampleSound,
+} from 'react-native-notification-sounds';
+
 const App = () => {
+
   
   LogBox.ignoreAllLogs();
+
 
   async function navigationService(remoteMessage) {
     RootNavigation.navigate('VocieCall', {remoteMessage: remoteMessage});
@@ -64,6 +82,21 @@ const App = () => {
     // });
 
     messaging().setBackgroundMessageHandler(async remoteMessage => {
+      if (remoteMessage?.data?.room_id) {
+        NotificationSounds.getNotifications('ringtone').then(soundsList => {
+          //console.log('SOUNDS', JSON.stringify(soundsList));
+          const sound = {
+            soundID: '35',
+            url: 'content://media/internal/audio/media/35',
+            title: 'Dynamic',
+          };
+          playSampleSound(sound);
+        });
+        // setTimeout(() => {
+        //   stopSampleSound();
+        // },5000)
+      }
+      console.log('remoteMessage in background: ', remoteMessage);
       global.notification = remoteMessage;
       remoteMessage.data.room_id
         ? navigationService(remoteMessage)
