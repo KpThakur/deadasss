@@ -30,10 +30,7 @@ import NotificationSounds, {
 } from 'react-native-notification-sounds';
 
 const App = () => {
-
-  
   LogBox.ignoreAllLogs();
-
 
   async function navigationService(remoteMessage) {
     RootNavigation.navigate('VocieCall', {remoteMessage: remoteMessage});
@@ -43,18 +40,21 @@ const App = () => {
   useEffect(() => {
     if (Platform.OS === 'android') {
       PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
         PermissionsAndroid.PERMISSIONS.CAMERA,
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
         PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
       ]).then(result => {
         if (
+          result['android.permission.POST_NOTIFICATIONS'] &&
           result['android.permission.CAMERA'] &&
           result['android.permission.READ_EXTERNAL_STORAGE'] &&
           result['android.permission.RECORD_AUDIO'] &&
           result['android.permission.WRITE_EXTERNAL_STORAGE']
         ) {
         } else if (
+          result['android.permission.POST_NOTIFICATIONS'] ||
           result['android.permission.CAMERA'] ||
           result['android.permission.READ_EXTERNAL_STORAGE'] ||
           result['android.permission.RECORD_AUDIO'] ||
@@ -104,7 +104,9 @@ const App = () => {
         : console.log(remoteMessage.notification.title);
     });
 
-    messaging().getInitialNotification().then(async remoteMessage => {
+    messaging()
+      .getInitialNotification()
+      .then(async remoteMessage => {
         console.log('Message handled in the kill state!', remoteMessage);
         // if (remoteMessage?.data?.room_id) {
         //   NotificationSounds.getNotifications('ringtone').then(soundsList => {
@@ -115,10 +117,7 @@ const App = () => {
         remoteMessage.data.room_id
           ? navigationService(remoteMessage)
           : console.log(remoteMessage.notification.title);
-      
-    });
-    
-   
+      });
 
     return () => {
       unsubscribe;
