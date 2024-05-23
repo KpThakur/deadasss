@@ -47,7 +47,7 @@ const ChallengeCodeScreen = props => {
             <Text style={styles.ChallengeTxt}>X</Text>
           </TouchableOpacity>
         </View>
-        {/* <ScrollView> */}
+        <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.FirstCOntainer}>
           <Image
             style={styles.imgStyle}
@@ -99,7 +99,7 @@ const ChallengeCodeScreen = props => {
                         <Text style={styles.AlredyAccntTxt}>Tap continue to accept <Text style={{ color: COMMON_BLUE_COLOUR, textDecorationLine: 'underline' }}>Terms & Data Policy.</Text></Text>
                     </TouchableOpacity> */}
 
-        {(!props.listBid.error && props.listBid.status ) ? (
+        {/* {(!props.listBid.error && props.listBid.status ) ? (
           <View
             style={{
               flex: 3.5,
@@ -132,9 +132,8 @@ const ChallengeCodeScreen = props => {
               renderItem={({item, index}) => props._handleCallWait(item, index)}
             />
           </View>
-        ) : null}
-
-        {/* </ScrollView> */}
+        ) : null} */}
+        </ScrollView>
       </View>
     </View>
   );

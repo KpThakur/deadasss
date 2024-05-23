@@ -72,7 +72,7 @@ export default class JoinChannelAudio extends Component {
     }, 3000);
     this.storeDataLocal();
     const Callinterval = setInterval(() => {
-      this.CallDisconnectAfterSecond(Callinterval);
+      this.CallDisconnectAfterSecond(Callinterval)
     }, 50000);
   }
 
