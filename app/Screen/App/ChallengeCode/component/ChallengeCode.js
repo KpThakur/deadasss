@@ -99,7 +99,7 @@ const ChallengeCodeScreen = props => {
                         <Text style={styles.AlredyAccntTxt}>Tap continue to accept <Text style={{ color: COMMON_BLUE_COLOUR, textDecorationLine: 'underline' }}>Terms & Data Policy.</Text></Text>
                     </TouchableOpacity> */}
 
-        {/* {(!props.listBid.error && props.listBid.status ) ? (
+        {(!props.listBid.error && props.listBid.status ) ? (
           <View
             style={{
               flex: 3.5,
@@ -115,7 +115,6 @@ const ChallengeCodeScreen = props => {
             <FlatList
               // keyExtractor={(item, index) => index.toString()}
               data={props.listBid?.data}
-             // data={props.data}
               showsVerticalScrollIndicator={false}
               ListEmptyComponent={() => (
                 <View style={{alignItems: 'center', paddingTop: 40}}>
@@ -132,7 +131,7 @@ const ChallengeCodeScreen = props => {
               renderItem={({item, index}) => props._handleCallWait(item, index)}
             />
           </View>
-        ) : null} */}
+        ) : null}
         </ScrollView>
       </View>
     </View>

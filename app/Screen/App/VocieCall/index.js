@@ -141,9 +141,9 @@ const VocieCall = ({navigation, route}) => {
         room_id: remoteMessage?.data?.room_id,
         pay_to_id: remoteMessage?.data?.pay_to_id,
       };
-      console.log("find room id in _handleCallStatus in voiceScreen" , params)
+     // console.log("find room id in _handleCallStatus in voiceScreen" , params)
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
-      console.log('data:------- ', data);
+      //console.log('data:--in getCallStatus api---', data);
       if (data.status === 200) {
         if (data.data.call_status === 3) {
           clearInterval(interval);
@@ -172,7 +172,7 @@ const VocieCall = ({navigation, route}) => {
         challenge_id: remoteMessage?.data?.challenge_id,
         call_status: 2,
       };
-      console.log("find room id in onPressAccept in voiceScreen" , params)
+     // console.log("find room id in onPressAccept in voiceScreen" , params)
       const {data} = await apiCall(
         'POST',
         ENDPOINTS.VIDEO_CALLING_STATUS,

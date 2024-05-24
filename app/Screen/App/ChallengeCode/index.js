@@ -52,23 +52,23 @@ const ChallengeCode = ({route}) => {
     }, []),
   );
 
-  const [data, setData] = useState([
-    {
-      payment_id: 202,
-      call_start_time: 1715327354,
-      call_end_time: 1715328254,
-      create_date: '2024-05-10T07:48:14.000Z',
-      pay_to_user_id: 111,
-      pay_from_id: 108,
-      challenge_code: 'MRF5K',
-      call_status: 5,
-      challenge_title: 'Test for call check',
-      user_id: 111,
-      first_name: 'Vrashank',
-      last_name: 'Patidar',
-      profile_pic: 'default.jpg',
-    },
-  ]);
+  // const [data, setData] = useState([
+  //   {
+  //     payment_id: 202,
+  //     call_start_time: 1715327354,
+  //     call_end_time: 1715328254,
+  //     create_date: '2024-05-10T07:48:14.000Z',
+  //     pay_to_user_id: 111,
+  //     pay_from_id: 108,
+  //     challenge_code: 'MRF5K',
+  //     call_status: 5,
+  //     challenge_title: 'Test for call check',
+  //     user_id: 111,
+  //     first_name: 'Vrashank',
+  //     last_name: 'Patidar',
+  //     profile_pic: 'default.jpg',
+  //   },
+  // ]);
 
   async function _handleList() {
     try {
@@ -77,7 +77,7 @@ const ChallengeCode = ({route}) => {
       console.log('find payment for bid in responce....????...', data);
       if (data.status === 200) {
         setIsLoading(false);
-       // setListBid(data);
+        setListBid(data);
         console.log('find payment for bid in responce 200....????...', data);
       } else if (data.status === 201) {
         // setAlertMessage(data.message);
@@ -383,7 +383,6 @@ const ChallengeCode = ({route}) => {
         Code={Code}
         listBid={listBid}
         _handleCallWait={_handleCallWait}
-        data={data}
       />
       <AnimatedAlert
         alertMessage={alertMessage}
