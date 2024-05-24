@@ -74,7 +74,13 @@ export default class JoinChannelAudio extends Component {
     const Callinterval = setInterval(() => {
       this.CallDisconnectAfterSecond(Callinterval)
     }, 50000);
+
+    const Callintervals = setInterval(() => {
+      this.CheckCallstatus(Callintervals)
+    }, 2000);
+    
   }
+  
 
   componentWillUnmount() {
     this._engine?.destroy();
@@ -96,11 +102,16 @@ export default class JoinChannelAudio extends Component {
         pay_to_id: this.state.payToId,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
+      console.log('data in oncallscreen: ', data);
       if (data.status === 200) {
         if (data.data.call_status === 1) {
           clearInterval(Callinterval);
-          this.callNotRecievFun();
-        } else {
+          this.callNotRecievFun(5);
+        } else if(data.data.call_status === 4) {
+          clearInterval(Callinterval);
+          this.callNotRecievFun(4);
+        }
+        else{
           clearInterval(Callinterval);
         }
       } else if (data.status === 201) {
@@ -111,7 +122,31 @@ export default class JoinChannelAudio extends Component {
     }
   };
 
-  callNotRecievFun = async () => {
+  CheckCallstatus = async Callinterval => {
+    try {
+      const params = {
+        room_id: this.state.roomID,
+        pay_to_id: this.state.payToId,
+      };
+      const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
+      console.log('data in oncallscreen: ', data);
+      if (data.status === 200) {
+       if(data.data.call_status === 4) {
+          clearInterval(Callinterval);
+          this.callNotRecievFun(4);
+        }
+       /*  else{
+          clearInterval(Callinterval);
+        } */
+      } else if (data.status === 201) {
+      } else if (data.status === 401) {
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  callNotRecievFun = async (call_status) => {
     try {
       const params = {
         room_id:
@@ -122,7 +157,7 @@ export default class JoinChannelAudio extends Component {
           this.props.route.params.Status === 1
             ? this.props.route.params.remoteMessage.data.challenge_id
             : this.props.route.params.remoteMessage.challenge_id,
-        call_status: 5,
+            call_status: call_status,
       };
       const {data} = await apiCall(
         'POST',
