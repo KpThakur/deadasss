@@ -63,6 +63,8 @@ export default class JoinChannelAudio extends Component {
       // CameraShow: true,
       CameraShow: 'big',
     };
+    this.Callinterval = null;
+    this.Callintervals = null;
   }
 
   UNSAFE_componentWillMount() {
@@ -80,7 +82,13 @@ export default class JoinChannelAudio extends Component {
     }, 2000);
     
   }
+
   
+  componentWillUnmount() {
+    if (this.Callintervals) {
+      clearInterval(this.Callintervals);
+    }
+  }
 
   componentWillUnmount() {
     this._engine?.destroy();
@@ -102,7 +110,8 @@ export default class JoinChannelAudio extends Component {
         pay_to_id: this.state.payToId,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
-      console.log('data in oncallscreen: ', data);
+      console.log('find api getCallStatus in videocallscreen CallDisconnectAfterSecond() ', data);
+
       if (data.status === 200) {
         if (data.data.call_status === 1) {
           clearInterval(Callinterval);
@@ -122,18 +131,20 @@ export default class JoinChannelAudio extends Component {
     }
   };
 
-  CheckCallstatus = async Callinterval => {
+  CheckCallstatus = async Callintervals => {
     try {
       const params = {
         room_id: this.state.roomID,
         pay_to_id: this.state.payToId,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
-      console.log('data in oncallscreen: ', data);
+      console.log('find api getCallStatus in videocallscreen CheckCallstatus() ', data);
       if (data.status === 200) {
        if(data.data.call_status === 4) {
-          clearInterval(Callinterval);
+          clearInterval(Callintervals);
           this.callNotRecievFun(4);
+        }else if (data.data.call_status === 6) {
+          clearInterval(Callintervals);
         }
        /*  else{
           clearInterval(Callinterval);
@@ -143,10 +154,12 @@ export default class JoinChannelAudio extends Component {
       }
     } catch (e) {
       console.log(e);
+     // clearInterval(this.Callintervals);
     }
   };
 
   callNotRecievFun = async (call_status) => {
+    console.log('Call not received with status:', call_status);
     try {
       const params = {
         room_id:
@@ -188,6 +201,7 @@ export default class JoinChannelAudio extends Component {
             : this.props.route.params.remoteMessage.pay_to_id,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
+      console.log('find api getCallStatus in videocallscreen _handleCallStatus() ', data);
       if (data.status === 200) {
         if (data.data.call_status === 3) {
           clearInterval(interval);
