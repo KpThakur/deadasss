@@ -131,8 +131,10 @@ const VocieCall = ({navigation, route}) => {
       const interval = setInterval(() => {
         _handleCallStatus(interval);
       }, 2000);
+      return () => clearInterval(interval);
     }, [counter]),
   );
+
 
   const _handleCallStatus = async interval => {
     try {
@@ -143,7 +145,8 @@ const VocieCall = ({navigation, route}) => {
       };
      // console.log("find room id in _handleCallStatus in voiceScreen" , params)
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
-      //console.log('data:--in getCallStatus api---', data);
+      console.log('find api getCallStatus in $$$voicecallscreen  ', data);
+
       if (data.status === 200) {
         if (data.data.call_status === 3) {
           clearInterval(interval);
@@ -153,6 +156,7 @@ const VocieCall = ({navigation, route}) => {
           navigation.navigate('YouAllScreen');
         }
       } else if (data.status === 201) {
+        clearInterval(interval);
         navigation.navigate('YouAllScreen');
       } else if (data.status === 401) {
         console.log(data.message);
@@ -162,8 +166,9 @@ const VocieCall = ({navigation, route}) => {
     }
   };
 
-  async function onPressAccept() {
+  async function onPressAccept(interval) {
     //togglePause();
+   // clearInterval(interval);
     stopSampleSound()
     setIsLoading(true);
     try {
@@ -201,7 +206,8 @@ const VocieCall = ({navigation, route}) => {
     }
   }
 
-  async function onPressReject() {
+  async function onPressReject(interval) {
+   // clearInterval(interval);
     //togglePause();
     stopSampleSound()
     setIsLoading(true);
