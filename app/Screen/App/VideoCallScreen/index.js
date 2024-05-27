@@ -63,7 +63,6 @@ export default class JoinChannelAudio extends Component {
       // CameraShow: true,
       CameraShow: 'big',
     };
-    this.Callinterval = null;
     this.Callintervals = null;
   }
 
@@ -74,16 +73,14 @@ export default class JoinChannelAudio extends Component {
     }, 3000);
     this.storeDataLocal();
     const Callinterval = setInterval(() => {
-      this.CallDisconnectAfterSecond(Callinterval)
+      this.CallDisconnectAfterSecond(Callinterval);
     }, 50000);
 
     const Callintervals = setInterval(() => {
-      this.CheckCallstatus(Callintervals)
+      this.CheckCallstatus(Callintervals);
     }, 2000);
-    
   }
 
-  
   componentWillUnmount() {
     if (this.Callintervals) {
       clearInterval(this.Callintervals);
@@ -110,17 +107,19 @@ export default class JoinChannelAudio extends Component {
         pay_to_id: this.state.payToId,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
-      console.log('find api getCallStatus in videocallscreen CallDisconnectAfterSecond() ', data);
+      console.log(
+        'find api getCallStatus in videocallscreen CallDisconnectAfterSecond() ',
+        data,
+      );
 
       if (data.status === 200) {
         if (data.data.call_status === 1) {
           clearInterval(Callinterval);
           this.callNotRecievFun(5);
-        } else if(data.data.call_status === 4) {
+        } else if (data.data.call_status === 4) {
           clearInterval(Callinterval);
           this.callNotRecievFun(4);
-        }
-        else{
+        } else {
           clearInterval(Callinterval);
         }
       } else if (data.status === 201) {
@@ -138,15 +137,18 @@ export default class JoinChannelAudio extends Component {
         pay_to_id: this.state.payToId,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
-      console.log('find api getCallStatus in videocallscreen CheckCallstatus() ', data);
+      console.log(
+        'find api getCallStatus in videocallscreen CheckCallstatus() ',
+        data,
+      );
       if (data.status === 200) {
-       if(data.data.call_status === 4) {
+        if (data.data.call_status === 4) {
           clearInterval(Callintervals);
           this.callNotRecievFun(4);
-        }else if (data.data.call_status === 6) {
+        } else if (data.data.call_status === 6 || data.data.call_status === 5) {
           clearInterval(Callintervals);
         }
-       /*  else{
+        /*  else{
           clearInterval(Callinterval);
         } */
       } else if (data.status === 201) {
@@ -154,11 +156,11 @@ export default class JoinChannelAudio extends Component {
       }
     } catch (e) {
       console.log(e);
-     // clearInterval(this.Callintervals);
+      // clearInterval(this.Callintervals);
     }
   };
 
-  callNotRecievFun = async (call_status) => {
+  callNotRecievFun = async call_status => {
     console.log('Call not received with status:', call_status);
     try {
       const params = {
@@ -170,7 +172,7 @@ export default class JoinChannelAudio extends Component {
           this.props.route.params.Status === 1
             ? this.props.route.params.remoteMessage.data.challenge_id
             : this.props.route.params.remoteMessage.challenge_id,
-            call_status: call_status,
+        call_status: call_status,
       };
       const {data} = await apiCall(
         'POST',
@@ -201,7 +203,10 @@ export default class JoinChannelAudio extends Component {
             : this.props.route.params.remoteMessage.pay_to_id,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
-      console.log('find api getCallStatus in videocallscreen _handleCallStatus() ', data);
+      console.log(
+        'find api getCallStatus in videocallscreen _handleCallStatus() ',
+        data,
+      );
       if (data.status === 200) {
         if (data.data.call_status === 3) {
           clearInterval(interval);

@@ -55,7 +55,7 @@ const SettingScreen = props => {
         <View style={styles.FirstContainer}>
           <Text style={styles.SettingMainTxt}>Setting</Text>
         </View>
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <ScrollView contentContainerStyle={{flexGrow: 1}} showsVerticalScrollIndicator={false}>
           <View style={styles.MiddleContain}>
             <TouchableOpacity
               onPress={() => onPressManageProfile()}
