@@ -18,6 +18,8 @@ const LoginScreen = props => {
     setRemember(!remember);
   }
   function onPressForgotPassword() {
+    setEmail('');
+    setPassword('');
     navigation.navigate('ForgotPassword');
   }
   function onPressLogin() {
@@ -28,6 +30,8 @@ const LoginScreen = props => {
     props._handleLogin(parameters);
   }
   function onPressRegister() {
+    setEmail('');
+    setPassword('');
     navigation.navigate('Registration');
   }
   return (
@@ -87,15 +91,18 @@ const LoginScreen = props => {
 
           <View style={styles.dontAccView}>
             <Text style={styles.AlredyAccntTxt}>
-              If you don't have an account, 
+              If you don't have an account,
             </Text>
             <TouchableOpacity onPress={() => onPressRegister()}>
-              <Text style={[styles.AlredyAccntTxt, {color: COMMON_BLUE_COLOUR, marginLeft: 2}]}>
-                 Register Yourself Here.
+              <Text
+                style={[
+                  styles.AlredyAccntTxt,
+                  {color: COMMON_BLUE_COLOUR, marginLeft: 2},
+                ]}>
+                Register Yourself Here.
               </Text>
             </TouchableOpacity>
           </View>
-          
         </View>
       </View>
     </View>

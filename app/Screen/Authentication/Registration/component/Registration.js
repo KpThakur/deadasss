@@ -53,6 +53,20 @@ const RegistrationScreen = props => {
   const [BirthDay, setBirthDay] = useState('');
   const [timePickerVisible, setTimePickerVisible] = useState(false);
 
+
+  const parameters = {
+    setFirstName: setFirstName,
+    setLastName: setLastName,
+    setEmail: setEmail,
+    setPassword: setPassword,
+    setConfirmPassword: setConfirmPassword,
+    setContactNumber: setContactNumber,
+    setGender: setGender,
+    setBirthDay: setBirthDay,
+    setCountryCode: setCountryCode,
+    setCountryname: setCountryname,
+  };
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -384,7 +398,7 @@ const RegistrationScreen = props => {
 
           <View style={styles.alrdyAccView}>
             <Text style={styles.AlredyAccntTxt}>Already have an account?</Text>
-            <TouchableOpacity onPress={() => props.onPressLoginHere()}>
+            <TouchableOpacity onPress={() => props.onPressLoginHere(parameters)}>
               <Text style={[styles.AlredyAccntTxt, {color: RED_COLOUR_CODE}]}>
                 {' '}
                 Login Here.

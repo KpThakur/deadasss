@@ -103,7 +103,7 @@ const RegistrationView = () => {
       setAlertMessage("Confirm password and password doesn't match ");
       return false;
     }
-    if (!parameters.CountryCode && parameters.Countryname === '') {
+    if (!parameters.CountryCode || parameters.Countryname === '') {
       AnimatedAlert.showAlert();
       setAlertMessage('Please select your country');
       return false;
@@ -212,7 +212,23 @@ const RegistrationView = () => {
       }
     }
   };
-  function onPressLoginHere() {
+
+  const resetState = (parameters) => {
+    parameters.setFirstName('');
+    parameters.setLastName('');
+    parameters.setEmail('');
+    parameters.setPassword('');
+    parameters.setConfirmPassword('');
+    parameters.setContactNumber('');
+    parameters.setGender('');
+    parameters.setBirthDay('');
+    parameters.setCountryCode('');
+    parameters.setCountryname('');
+  };
+
+
+  function onPressLoginHere(parameters) {
+    resetState(parameters)
     navigation.navigate('Login');
   }
   return (
