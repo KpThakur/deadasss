@@ -1751,11 +1751,6 @@
   dependencies:
     plist "^3.1.0"
 
-"@react-native-firebase/dynamic-links@^19.2.2":
-  version "19.2.2"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/dynamic-links/-/dynamic-links-19.2.2.tgz#383d08b420f9acb8490008b1e7504d23b0b5a498"
-  integrity sha512-nZxUuKG8hX0f3iiHobVYn2gDlVw7eb9YU+xD0ybvKGsG00lT7g43pkDhyb4hBg8QVtRgbO/28x0vxF1CZ7jhEw==
-
 "@react-native-firebase/messaging@^18.8.0":
   version "18.9.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-18.9.0.tgz#7c814145717407192534d54baa354036978cee6a"
@@ -6863,6 +6858,11 @@ react-native-media-controls@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-native-media-controls/-/react-native-media-controls-2.3.0.tgz#c36e876a14d12982b7c6fb759201ff439117cbd0"
   integrity sha512-N10i12ZO+GIXjmdA9hQk/HuBm5u9xWPIOydG/2SvLEZcnY3xg3D8d2IJXRolzSm2jBRgEGSO4rMgRBU6MpdNMg==
+
+react-native-permissions@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-4.1.5.tgz#db4d1ddbf076570043f4fd4168f54bb6020aec92"
+  integrity sha512-r6VMRacASmtRHS+GZ+5HQCp9p9kiE+UU9magHOZCXZLTJitdTuVHWZRrb4v4oqZGU+zAp3mZhTQftuMMv+WLUg==
 
 react-native-popup-dialog@^0.18.3:
   version "0.18.3"

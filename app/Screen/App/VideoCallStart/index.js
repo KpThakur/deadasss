@@ -85,8 +85,11 @@ const VideoCallStartView = ({ route }) => {
             }
             setIsLoading(true)
             const { data } = await apiCall('POST', ENDPOINTS.VIDEO_CALLING, params);
+            console.log('data in videocall responce: ', data);
             if (data.status === 200) {
                 setIsLoading(false)
+                console.log('data in videocall responce 200: ', data);
+
                 // navigation.navigate("VideoPlay", { data: data.data, remoteMessage: data.data, Status: 2, callType: 'sender' })
                 navigation.navigate("VideoCallScreen", { data: data.data, remoteMessage: data.data, Status: 2, callType: 'sender' })
             } else if (data.status === 201) {

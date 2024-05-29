@@ -16,6 +16,7 @@ import ENDPOINTS from '../../../Utils/apiEndPoints';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {AuthContext} from '../../../Components/AuthContext';
 import styles from './component/styles';
+import messaging from '@react-native-firebase/messaging';
 
 import Error from '../../../Components/modal/error';
 const Login = () => {
@@ -51,12 +52,20 @@ const Login = () => {
     return true;
   }
   async function _handleLogin(parameters) {
-    const deviceToken = await AsyncStorage.getItem('fcmToken');
-    let deviceId = DeviceInfo.getDeviceId();
-    let deviceType = DeviceInfo.getDeviceType();
+   // const deviceToken = await AsyncStorage.getItem('fcmToken');
+   //await messaging().registerDeviceForRemoteMessages();
+    
     const valid = await validationForm(parameters);
     if (valid) {
       try {
+    const deviceToken = await messaging().getToken();
+    console.log('deviceToken: ', deviceToken);
+    let deviceId = DeviceInfo.getDeviceId();
+    console.log('deviceId: ', deviceId);
+    let deviceType = DeviceInfo.getDeviceType();
+    console.log('deviceType: ', deviceType);
+
+
         setIsLoading(true);
         const params = {
           username: parameters.Email,
@@ -115,6 +124,7 @@ const Login = () => {
           // AnimatedAlert.showAlert()
         }
       } catch (error) {
+      console.log('error: ', error);
         // AnimatedAlert.showAlert()
         setIsLoading(false);
         setVisibleErr(true);

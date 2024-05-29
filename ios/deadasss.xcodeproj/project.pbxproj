@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* deadasssTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* deadasssTests.m */; };
-		0474695F2BD941760044E805 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0474695E2BD941760044E805 /* GoogleService-Info.plist */; };
-		047469602BD941760044E805 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0474695E2BD941760044E805 /* GoogleService-Info.plist */; };
+		0464CE4E2BF7591100C157C7 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 0464CE4D2BF7591100C157C7 /* Algorithms */; };
+		0464CE532BF7615200C157C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0464CE522BF7615200C157C7 /* GoogleService-Info.plist */; };
 		09B8786611104B66BD4A3603 /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41B7A5830F894BB29BEA38B6 /* SFUIText-HeavyItalic.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -49,7 +49,8 @@
 		00E356EE1AD99517003FC87E /* deadasssTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = deadasssTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* deadasssTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = deadasssTests.m; sourceTree = "<group>"; };
-		0474695E2BD941760044E805 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0464CE512BF75CD900C157C7 /* deadasss.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = deadasss.entitlements; path = deadasss/deadasss.entitlements; sourceTree = "<group>"; };
+		0464CE522BF7615200C157C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* deadasss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deadasss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = deadasss/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = deadasss/AppDelegate.mm; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0464CE4E2BF7591100C157C7 /* Algorithms in Frameworks */,
 				7125773F24A2575B97104691 /* libPods-deadasss.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,7 +125,8 @@
 		13B07FAE1A68108700A75B9A /* deadasss */ = {
 			isa = PBXGroup;
 			children = (
-				0474695E2BD941760044E805 /* GoogleService-Info.plist */,
+				0464CE522BF7615200C157C7 /* GoogleService-Info.plist */,
+				0464CE512BF75CD900C157C7 /* deadasss.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -254,6 +257,9 @@
 			dependencies = (
 			);
 			name = deadasss;
+			packageProductDependencies = (
+				0464CE4D2BF7591100C157C7 /* Algorithms */,
+			);
 			productName = deadasss;
 			productReference = 13B07F961A680F5B00A75B9A /* deadasss.app */;
 			productType = "com.apple.product-type.application";
@@ -284,6 +290,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -299,7 +308,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047469602BD941760044E805 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +332,7 @@
 				FB3D8C24E9DD4582A05DEB54 /* SFUIText-SemiboldItalic.ttf in Resources */,
 				DDC30398BD9946099BC466EF /* Snell-Round-hand-Black-Script.ttf in Resources */,
 				474E85CC00B148FD8CC1AD32 /* javatext.ttf in Resources */,
-				0474695F2BD941760044E805 /* GoogleService-Info.plist in Resources */,
+				0464CE532BF7615200C157C7 /* GoogleService-Info.plist in Resources */,
 				ECDF3CE223F2485BBD5E6AAA /* javatext.png in Resources */,
 				D6A15FA2A2824419816D792B /* sharefonts.net.txt in Resources */,
 			);
@@ -581,21 +589,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = deadasss/deadasss.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PF8FQ5JM6Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = deadasss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deadasss;
 				PRODUCT_NAME = deadasss;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -608,20 +621,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = deadasss/deadasss.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PF8FQ5JM6Z;
 				INFOPLIST_FILE = deadasss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 7;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deadasss;
 				PRODUCT_NAME = deadasss;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -813,6 +832,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0464CE4D2BF7591100C157C7 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
