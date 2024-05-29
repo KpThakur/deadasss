@@ -547,6 +547,8 @@ PODS:
     - React
   - react-native-keep-awake (4.0.0):
     - React
+  - react-native-notification-sounds (0.5.8):
+    - React
   - react-native-safe-area-context (4.10.1):
     - React-Core
   - react-native-splash-screen (3.3.0):
@@ -711,8 +713,6 @@ PODS:
     - React-Core
     - React-RCTImage
     - TOCropViewController
-  - RNPermissions (4.1.5):
-    - React-Core
   - RNReanimated (3.8.1):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -809,6 +809,7 @@ DEPENDENCIES:
   - react-native-agora (from `../node_modules/react-native-agora`)
   - react-native-image-base64 (from `../node_modules/react-native-image-base64`)
   - react-native-keep-awake (from `../node_modules/react-native-keep-awake`)
+  - react-native-notification-sounds (from `../node_modules/react-native-notification-sounds`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-track-player (from `../node_modules/react-native-track-player`)
@@ -843,7 +844,6 @@ DEPENDENCIES:
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
-  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
@@ -945,6 +945,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-base64"
   react-native-keep-awake:
     :path: "../node_modules/react-native-keep-awake"
+  react-native-notification-sounds:
+    :path: "../node_modules/react-native-notification-sounds"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -1013,8 +1015,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
-  RNPermissions:
-    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -1084,6 +1084,7 @@ SPEC CHECKSUMS:
   react-native-agora: c328ef8c381d7b22cc11d1eb298d8ff8a8e7a70d
   react-native-image-base64: 2ff9ac788639c87a91361ab6652cc95e871b1e54
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
+  react-native-notification-sounds: 739f8adc4010138e4cd72fd4e3220e7df758473f
   react-native-safe-area-context: dcab599c527c2d7de2d76507a523d20a0b83823d
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   react-native-track-player: 82ef1756ffeea61140fea17519ecd6d64ec3cf3e
@@ -1119,7 +1120,6 @@ SPEC CHECKSUMS:
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNImageCropPicker: 08ba3a2e2f4f8833d606f01906c371e382c4dea9
-  RNPermissions: 294531ede5a64d1528463e88fffef05675842042
   RNReanimated: f4798af7dede23d41039f0bc372710ead86e90c7
   RNScreens: 93ae3be2f119d955620f9bbb39ad372adb53b7a9
   RNShare: b674d9f1cb0dc11116983bebd8712908a226a3ee

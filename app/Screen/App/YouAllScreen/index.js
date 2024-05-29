@@ -19,7 +19,7 @@ const YouAllScreenView = () => {
             setTimeout(() => {
                 navigation.navigate("ChallangeScreen", { data: Data })
             }, 1000);
-            CheckChallenge()
+            //CheckChallenge()
         }, [])
     );
 

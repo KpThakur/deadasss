@@ -6859,10 +6859,10 @@ react-native-media-controls@^2.3.0:
   resolved "https://registry.yarnpkg.com/react-native-media-controls/-/react-native-media-controls-2.3.0.tgz#c36e876a14d12982b7c6fb759201ff439117cbd0"
   integrity sha512-N10i12ZO+GIXjmdA9hQk/HuBm5u9xWPIOydG/2SvLEZcnY3xg3D8d2IJXRolzSm2jBRgEGSO4rMgRBU6MpdNMg==
 
-react-native-permissions@^4.1.5:
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-4.1.5.tgz#db4d1ddbf076570043f4fd4168f54bb6020aec92"
-  integrity sha512-r6VMRacASmtRHS+GZ+5HQCp9p9kiE+UU9magHOZCXZLTJitdTuVHWZRrb4v4oqZGU+zAp3mZhTQftuMMv+WLUg==
+react-native-notification-sounds@^0.5.8:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/react-native-notification-sounds/-/react-native-notification-sounds-0.5.8.tgz#f65f6da1a7c453a3a4f5212629cbe97731d305fb"
+  integrity sha512-pvqJPwCGMvJzeCXMGlkIfbZP3t5vVJw2+8H83SN08g9L3l528BMnlRf99MArJN0qJwusxGFvKat6srNzPayAnA==
 
 react-native-popup-dialog@^0.18.3:
   version "0.18.3"

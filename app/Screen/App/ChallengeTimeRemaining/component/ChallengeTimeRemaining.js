@@ -12,7 +12,7 @@ const ChallengeTimeRemaining = (props) => {
         <View style={styles.container}>
             <View style={styles.body}>
                 <StatusBar backgroundColor={CHANGE_PASSWORD_COLOUR_CODE} />
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
                     <TouchableOpacity onPress={() => props.onPressCross()} style={styles.CrossViewTxt}>
                         <Text style={styles.CrossTextSTyle}>X</Text>
                     </TouchableOpacity>

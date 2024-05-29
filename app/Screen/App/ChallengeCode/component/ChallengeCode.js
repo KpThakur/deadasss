@@ -47,7 +47,7 @@ const ChallengeCodeScreen = props => {
             <Text style={styles.ChallengeTxt}>X</Text>
           </TouchableOpacity>
         </View>
-        {/* <ScrollView> */}
+        <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.FirstCOntainer}>
           <Image
             style={styles.imgStyle}
@@ -115,7 +115,6 @@ const ChallengeCodeScreen = props => {
             <FlatList
               // keyExtractor={(item, index) => index.toString()}
               data={props.listBid?.data}
-             // data={props.data}
               showsVerticalScrollIndicator={false}
               ListEmptyComponent={() => (
                 <View style={{alignItems: 'center', paddingTop: 40}}>
@@ -133,8 +132,7 @@ const ChallengeCodeScreen = props => {
             />
           </View>
         ) : null}
-
-        {/* </ScrollView> */}
+        </ScrollView>
       </View>
     </View>
   );

@@ -291,7 +291,7 @@
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
-				0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms.git" */,
 			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
@@ -834,7 +834,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+		0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
 			requirement = {
@@ -847,7 +847,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		0464CE4D2BF7591100C157C7 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			package = 0464CE4C2BF7591100C157C7 /* XCRemoteSwiftPackageReference "swift-algorithms.git" */;
 			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */

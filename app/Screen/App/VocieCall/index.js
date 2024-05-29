@@ -9,14 +9,17 @@ import AnimatedAlert from '../../../Components/AnimatedAlert';
 import {apiCall} from '../../../Utils/httpClient';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
 import {RED_COLOUR_CODE} from '../../../Utils/constant';
-
+import NotificationSounds, {
+  playSampleSound,
+  stopSampleSound,
+} from 'react-native-notification-sounds';
 
 let isInitialized = false;
 
 const VocieCall = ({navigation, route}) => {
   const {remoteMessage} = route.params;
 
- // console.log("find room_id in voiceCall>>>>", remoteMessage.data)
+ console.log("find room_id in voiceCall>>>>", remoteMessage.data)
  
   global.caller_userId = remoteMessage.data.user_id;
   const [isLoading, setIsLoading] = useState(false);
@@ -35,12 +38,14 @@ const VocieCall = ({navigation, route}) => {
 
   useFocusEffect(
     React.useCallback(() => {
-        async function initAndPlay() {
-            await initializePlayer();  
+      console.log("here is navigate in voice call")
+     //stopSampleSound();
+        // async function initAndPlay() {
+        //     await initializePlayer();  
             togglePlay();
-        }
+        // }
 
-        initAndPlay();
+        // initAndPlay();
 
         return () => {
             togglePause();  
@@ -93,21 +98,32 @@ const VocieCall = ({navigation, route}) => {
 //   }
 
   async function togglePlay() {
-    const currentTrack = await TrackPlayer.getCurrentTrack();
-    if (currentTrack == null) {
-      await TrackPlayer.reset();
-      await TrackPlayer.add({
-        url: require('../../../../app/skype-23266.mp3'),
-      });
-      await TrackPlayer.play();
-      await TrackPlayer.setRepeatMode(RepeatMode.Track)
-    } else {
-      console.log('Failed to play');
-    }
+    // const currentTrack = await TrackPlayer.getCurrentTrack();
+    // if (currentTrack == null) {
+    //   await TrackPlayer.reset();
+    //   await TrackPlayer.add({
+    //     url: require('../../../../app/skype-23266.mp3'),
+    //   });
+    //   await TrackPlayer.play();
+    //   await TrackPlayer.setRepeatMode(RepeatMode.Track)
+    // } else {
+    //   console.log('Failed to play');
+    // }
+    NotificationSounds.getNotifications('ringtone').then(soundsList => {
+      //console.log('SOUNDS', JSON.stringify(soundsList));
+      const sound = {
+        soundID: '35',
+        url: 'content://media/internal/audio/media/35',
+        //url: require('./app/skype-23266.mp3'),
+        title: 'Dynamic',
+      };
+      playSampleSound(soundsList[0]);
+    });
   }
 
   async function togglePause() {
-    await TrackPlayer.reset();
+    //await TrackPlayer.reset();
+    stopSampleSound()
   }
 
   useFocusEffect(
@@ -115,16 +131,22 @@ const VocieCall = ({navigation, route}) => {
       const interval = setInterval(() => {
         _handleCallStatus(interval);
       }, 2000);
+      return () => clearInterval(interval);
     }, [counter]),
   );
 
+
   const _handleCallStatus = async interval => {
     try {
-      const params = {
+      const params = { 
+
         room_id: remoteMessage?.data?.room_id,
         pay_to_id: remoteMessage?.data?.pay_to_id,
       };
+     // console.log("find room id in _handleCallStatus in voiceScreen" , params)
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
+      console.log('find api getCallStatus in $$$voicecallscreen  ', data);
+
       if (data.status === 200) {
         if (data.data.call_status === 3) {
           clearInterval(interval);
@@ -134,6 +156,7 @@ const VocieCall = ({navigation, route}) => {
           navigation.navigate('YouAllScreen');
         }
       } else if (data.status === 201) {
+        clearInterval(interval);
         navigation.navigate('YouAllScreen');
       } else if (data.status === 401) {
         console.log(data.message);
@@ -143,8 +166,10 @@ const VocieCall = ({navigation, route}) => {
     }
   };
 
-  async function onPressAccept() {
-    togglePause();
+  async function onPressAccept(interval) {
+    //togglePause();
+   // clearInterval(interval);
+    stopSampleSound()
     setIsLoading(true);
     try {
       const params = {
@@ -152,6 +177,7 @@ const VocieCall = ({navigation, route}) => {
         challenge_id: remoteMessage?.data?.challenge_id,
         call_status: 2,
       };
+     // console.log("find room id in onPressAccept in voiceScreen" , params)
       const {data} = await apiCall(
         'POST',
         ENDPOINTS.VIDEO_CALLING_STATUS,
@@ -180,8 +206,10 @@ const VocieCall = ({navigation, route}) => {
     }
   }
 
-  async function onPressReject() {
-    togglePause();
+  async function onPressReject(interval) {
+   // clearInterval(interval);
+    //togglePause();
+    stopSampleSound()
     setIsLoading(true);
     try {
       const params = {

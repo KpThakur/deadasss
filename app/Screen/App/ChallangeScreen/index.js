@@ -60,6 +60,7 @@ const ChallangeScreenView = () => {
         pay_to_id: global.notification.data.pay_to_id,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
+      console.log('find api getCallStatus in challangescreen in _handleCallStatusss()', data);
       // console.log("🚀 ~ file: index.js ~ line 66 ~ const_handleCallStatusss= ~ data", data)
       if (data.status === 200) {
         if (data.data.call_status === 1) {
@@ -142,6 +143,8 @@ const ChallangeScreenView = () => {
         pay_to_id: payToId,
       };
       const {data} = await apiCall('POST', ENDPOINTS.GET_CALL_STATUS, params);
+      console.log('find api getCallStatus in challangescreen _handleCallStatus() ', data);
+
       if (data.status === 200) {
         if (data.data.call_status === 2) {
           CallStatusChange(roomID, payToId, challengeId);

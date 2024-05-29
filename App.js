@@ -1,6 +1,17 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Routes from './Routes';
-import {PermissionsAndroid, Platform, View, Alert, LogBox} from 'react-native';
+import {
+  PermissionsAndroid,
+  Platform,
+  View,
+  Alert,
+  LogBox,
+  StyleSheet,
+  ScrollView,
+  Text,
+  TextInput,
+  Button,
+} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-community/async-storage';
 import {UserProvider} from './app/Utils/UserContext';
@@ -13,8 +24,12 @@ import ENDPOINTS from '././app/Utils/apiEndPoints';
 //   androidPayMode: 'test', // Android only
 // });
 
+import NotificationSounds, {
+  playSampleSound,
+  stopSampleSound,
+} from 'react-native-notification-sounds';
+
 const App = () => {
-  
   LogBox.ignoreAllLogs();
 
   async function navigationService(remoteMessage) {
@@ -25,18 +40,21 @@ const App = () => {
   useEffect(() => {
     if (Platform.OS === 'android') {
       PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
         PermissionsAndroid.PERMISSIONS.CAMERA,
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
         PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
       ]).then(result => {
         if (
+          result['android.permission.POST_NOTIFICATIONS'] &&
           result['android.permission.CAMERA'] &&
           result['android.permission.READ_EXTERNAL_STORAGE'] &&
           result['android.permission.RECORD_AUDIO'] &&
           result['android.permission.WRITE_EXTERNAL_STORAGE']
         ) {
         } else if (
+          result['android.permission.POST_NOTIFICATIONS'] ||
           result['android.permission.CAMERA'] ||
           result['android.permission.READ_EXTERNAL_STORAGE'] ||
           result['android.permission.RECORD_AUDIO'] ||
@@ -64,11 +82,42 @@ const App = () => {
     // });
 
     messaging().setBackgroundMessageHandler(async remoteMessage => {
+      if (remoteMessage?.data?.room_id) {
+        NotificationSounds.getNotifications('ringtone').then(soundsList => {
+          //console.log('SOUNDS', JSON.stringify(soundsList));
+          const sound = {
+            soundID: '35',
+            url: 'content://media/internal/audio/media/35',
+            //url: require('./app/skype-23266.mp3'),
+            title: 'Dynamic',
+          };
+          playSampleSound(soundsList[0]);
+        });
+        // setTimeout(() => {
+        //   stopSampleSound();
+        // },5000)
+      }
+      console.log('remoteMessage in background: ', remoteMessage);
       global.notification = remoteMessage;
       remoteMessage.data.room_id
         ? navigationService(remoteMessage)
         : console.log(remoteMessage.notification.title);
     });
+
+    messaging()
+      .getInitialNotification()
+      .then(async remoteMessage => {
+        console.log('Message handled in the kill state!', remoteMessage);
+        // if (remoteMessage?.data?.room_id) {
+        //   NotificationSounds.getNotifications('ringtone').then(soundsList => {
+        //     playSampleSound(soundsList[0]);
+        //   });
+        // }
+        global.notification = remoteMessage;
+        remoteMessage.data.room_id
+          ? navigationService(remoteMessage)
+          : console.log(remoteMessage.notification.title);
+      });
 
     return () => {
       unsubscribe;
