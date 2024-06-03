@@ -13,6 +13,7 @@ import AnimatedAlertSuccess from '../../../Components/AnimatedAlertSuccess';
 import ENDPOINTS from '../../../Utils/apiEndPoints';
 import moment from 'moment';
 import AsyncStorage from '@react-native-community/async-storage';
+import Error from '../../../Components/modal/error';
 
 const ChallengeCode = ({route}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +21,9 @@ const ChallengeCode = ({route}) => {
   const [Code, setCode] = useState('');
   const [alertSuccessMessage, setAlertSuccessMessage] = useState('');
   const [listBid, setListBid] = useState([]);
+
+  const [visibleErr, setVisibleErr] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   console.log('find bid data ???...', listBid);
   const [ItemData, setItemData] = useState('');
@@ -304,27 +308,34 @@ const ChallengeCode = ({route}) => {
           ENDPOINTS.CHALLENGE_CODE_VERIFY,
           params,
         );
+        console.log("find message in challenge code...???", data)
         if (data.status === 200) {
           setIsLoading(false);
           global.caller_userId = data.data.pay_to_user_id;
           navigation.navigate('PayNowScreen', {data: data.data});
         } else if (data.status === 201) {
-          setAlertMessage(data.message);
-          AnimatedAlert.showAlert();
+          setVisibleErr(true);
+          setErrorMessage(data.message);
+          // setAlertMessage(data.message);
+          // AnimatedAlert.showAlert();
           setIsLoading(false);
         } else if (data.status === 202) {
-          setAlertMessage(data.message);
-          AnimatedAlert.showAlert();
+          // setAlertMessage(data.message);
+          // AnimatedAlert.showAlert();
           global.caller_userId = data.data.pay_to_user_id;
           navigation.navigate('VideoCallStart', {data: data.data});
           setIsLoading(false);
         } else if (data.status === 401) {
-          setAlertMessage(data.message);
-          AnimatedAlert.showAlert();
+          setVisibleErr(true);
+          setErrorMessage(data.message);
+          // setAlertMessage(data.message);
+          // AnimatedAlert.showAlert();
           setIsLoading(false);
         } else if (data.status === 204) {
-          setAlertMessage("You can't call again");
-          AnimatedAlert.showAlert();
+          setVisibleErr(true);
+          setErrorMessage("You can't call again");
+          // setAlertMessage("You can't call again");
+          // AnimatedAlert.showAlert();
           setIsLoading(false);
         }
       } catch (error) {
@@ -391,6 +402,11 @@ const ChallengeCode = ({route}) => {
       <AnimatedAlertSuccess
         alertMessage={alertSuccessMessage}
         alertBGColor={'green'}
+      />
+       <Error
+        message={errorMessage}
+        visible={visibleErr}
+        closeModel={() => setVisibleErr(false)}
       />
     </View>
   );
